@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		5B091E8C2D98A46E00C913BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B091E722D98A46C00C913BB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B091E792D98A46C00C913BB;
+			remoteInfo = Thaleia;
+		};
+		5B091E962D98A46E00C913BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B091E722D98A46C00C913BB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B091E792D98A46C00C913BB;
+			remoteInfo = Thaleia;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5B091E7A2D98A46C00C913BB /* Thaleia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thaleia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B091E8B2D98A46E00C913BB /* ThaleiaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThaleiaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B091E952D98A46E00C913BB /* ThaleiaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThaleiaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		5B091E7C2D98A46C00C913BB /* Thaleia */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Thaleia;
+			sourceTree = "<group>";
+		};
+		5B091E8E2D98A46E00C913BB /* ThaleiaTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ThaleiaTests;
+			sourceTree = "<group>";
+		};
+		5B091E982D98A46E00C913BB /* ThaleiaUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ThaleiaUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5B091E772D98A46C00C913BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B091E882D98A46E00C913BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B091E922D98A46E00C913BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5B091E712D98A46C00C913BB = {
+			isa = PBXGroup;
+			children = (
+				5B091E7C2D98A46C00C913BB /* Thaleia */,
+				5B091E8E2D98A46E00C913BB /* ThaleiaTests */,
+				5B091E982D98A46E00C913BB /* ThaleiaUITests */,
+				5B091E7B2D98A46C00C913BB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5B091E7B2D98A46C00C913BB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5B091E7A2D98A46C00C913BB /* Thaleia.app */,
+				5B091E8B2D98A46E00C913BB /* ThaleiaTests.xctest */,
+				5B091E952D98A46E00C913BB /* ThaleiaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5B091E792D98A46C00C913BB /* Thaleia */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B091E9F2D98A46E00C913BB /* Build configuration list for PBXNativeTarget "Thaleia" */;
+			buildPhases = (
+				5B091E762D98A46C00C913BB /* Sources */,
+				5B091E772D98A46C00C913BB /* Frameworks */,
+				5B091E782D98A46C00C913BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				5B091E7C2D98A46C00C913BB /* Thaleia */,
+			);
+			name = Thaleia;
+			packageProductDependencies = (
+			);
+			productName = Thaleia;
+			productReference = 5B091E7A2D98A46C00C913BB /* Thaleia.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5B091E8A2D98A46E00C913BB /* ThaleiaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B091EA22D98A46E00C913BB /* Build configuration list for PBXNativeTarget "ThaleiaTests" */;
+			buildPhases = (
+				5B091E872D98A46E00C913BB /* Sources */,
+				5B091E882D98A46E00C913BB /* Frameworks */,
+				5B091E892D98A46E00C913BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5B091E8D2D98A46E00C913BB /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				5B091E8E2D98A46E00C913BB /* ThaleiaTests */,
+			);
+			name = ThaleiaTests;
+			packageProductDependencies = (
+			);
+			productName = ThaleiaTests;
+			productReference = 5B091E8B2D98A46E00C913BB /* ThaleiaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5B091E942D98A46E00C913BB /* ThaleiaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B091EA52D98A46E00C913BB /* Build configuration list for PBXNativeTarget "ThaleiaUITests" */;
+			buildPhases = (
+				5B091E912D98A46E00C913BB /* Sources */,
+				5B091E922D98A46E00C913BB /* Frameworks */,
+				5B091E932D98A46E00C913BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5B091E972D98A46E00C913BB /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				5B091E982D98A46E00C913BB /* ThaleiaUITests */,
+			);
+			name = ThaleiaUITests;
+			packageProductDependencies = (
+			);
+			productName = ThaleiaUITests;
+			productReference = 5B091E952D98A46E00C913BB /* ThaleiaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5B091E722D98A46C00C913BB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					5B091E792D98A46C00C913BB = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					5B091E8A2D98A46E00C913BB = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 5B091E792D98A46C00C913BB;
+					};
+					5B091E942D98A46E00C913BB = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 5B091E792D98A46C00C913BB;
+					};
+				};
+			};
+			buildConfigurationList = 5B091E752D98A46C00C913BB /* Build configuration list for PBXProject "Thaleia" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5B091E712D98A46C00C913BB;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 5B091E7B2D98A46C00C913BB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5B091E792D98A46C00C913BB /* Thaleia */,
+				5B091E8A2D98A46E00C913BB /* ThaleiaTests */,
+				5B091E942D98A46E00C913BB /* ThaleiaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5B091E782D98A46C00C913BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B091E892D98A46E00C913BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B091E932D98A46E00C913BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5B091E762D98A46C00C913BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B091E872D98A46E00C913BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B091E912D98A46E00C913BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5B091E8D2D98A46E00C913BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B091E792D98A46C00C913BB /* Thaleia */;
+			targetProxy = 5B091E8C2D98A46E00C913BB /* PBXContainerItemProxy */;
+		};
+		5B091E972D98A46E00C913BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B091E792D98A46C00C913BB /* Thaleia */;
+			targetProxy = 5B091E962D98A46E00C913BB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5B091E9D2D98A46E00C913BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5B091E9E2D98A46E00C913BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		5B091EA02D98A46E00C913BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Thaleia/Thaleia.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Thaleia/Preview Content\"";
+				DEVELOPMENT_TEAM = MY7692F7R6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielhassebrock.Thaleia;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		5B091EA12D98A46E00C913BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Thaleia/Thaleia.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Thaleia/Preview Content\"";
+				DEVELOPMENT_TEAM = MY7692F7R6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielhassebrock.Thaleia;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		5B091EA32D98A46E00C913BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MY7692F7R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielhassebrock.ThaleiaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Thaleia.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Thaleia";
+			};
+			name = Debug;
+		};
+		5B091EA42D98A46E00C913BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MY7692F7R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielhassebrock.ThaleiaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Thaleia.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Thaleia";
+			};
+			name = Release;
+		};
+		5B091EA62D98A46E00C913BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MY7692F7R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielhassebrock.ThaleiaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Thaleia;
+			};
+			name = Debug;
+		};
+		5B091EA72D98A46E00C913BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MY7692F7R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielhassebrock.ThaleiaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Thaleia;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5B091E752D98A46C00C913BB /* Build configuration list for PBXProject "Thaleia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B091E9D2D98A46E00C913BB /* Debug */,
+				5B091E9E2D98A46E00C913BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B091E9F2D98A46E00C913BB /* Build configuration list for PBXNativeTarget "Thaleia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B091EA02D98A46E00C913BB /* Debug */,
+				5B091EA12D98A46E00C913BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B091EA22D98A46E00C913BB /* Build configuration list for PBXNativeTarget "ThaleiaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B091EA32D98A46E00C913BB /* Debug */,
+				5B091EA42D98A46E00C913BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B091EA52D98A46E00C913BB /* Build configuration list for PBXNativeTarget "ThaleiaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B091EA62D98A46E00C913BB /* Debug */,
+				5B091EA72D98A46E00C913BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5B091E722D98A46C00C913BB /* Project object */;
+}
