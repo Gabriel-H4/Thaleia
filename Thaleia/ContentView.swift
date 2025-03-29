@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var viewModel = ViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationSplitView(
+            preferredCompactColumn: $viewModel.preferred_tab
+        ) {
+            List(
+                SidebarTab.allCases,
+                selection: $viewModel.selected_sidebar_tab
+            ) { tab in
+                NavigationLink(value: tab) {
+                    Label(tab.title, systemImage: tab.icon)
+                }
+                .tag(tab)
+            }
+            .listStyle(.sidebar)
+        } content: {
+            Text("\(viewModel.selected_sidebar_tab) content")
+        } detail: {
+            Text("\(viewModel.selected_sidebar_tab) details")
         }
-        .padding()
+        .navigationTitle("Thaleia")
     }
 }
 
