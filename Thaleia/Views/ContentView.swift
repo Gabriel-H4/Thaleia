@@ -22,15 +22,23 @@ struct ContentView: View {
                 NavigationLink(value: tab) {
                     Label(tab.title, systemImage: tab.icon)
                 }
-                .tag(tab)
             }
             .listStyle(.sidebar)
         } content: {
-            Text("\(viewModel.selected_sidebar_tab) content")
+            VStack {
+                Text("ContentView")
+                VStack {
+                    StatusCard_HomeView()
+                    Text(viewModel.selected_sidebar_tab.title)
+                }
+            }
         } detail: {
-            Text("\(viewModel.selected_sidebar_tab) details")
+            VStack {
+                Text("DetailView")
+                Text(viewModel.selected_sidebar_tab.title)
+            }
         }
-        .navigationTitle("Thaleia")
+        .navigationTitle("AppName")
     }
 }
 

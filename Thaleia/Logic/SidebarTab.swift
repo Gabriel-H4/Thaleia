@@ -1,48 +1,44 @@
 //
-//  Sidebar_Tab.swift
+//  SidebarTab.swift
 //  Thaleia
 //
 //  Created by Gabriel Hassebrock on 3/29/25.
 //
 
-enum SidebarTab: CaseIterable {
+import SwiftUI
+
+public enum SidebarTab: CaseIterable {
     case home
     case settings
 }
 
 extension SidebarTab: Identifiable {
-    var id: Int {
+    public var id: Int {
         switch self {
         case .home:
             0
         case .settings:
             1
-        default:
-            9
         }
     }
 }
 
 extension SidebarTab: LabelRepresentable {
-    var title: String {
+    public var title: LocalizedStringKey {
         switch self {
         case .home:
-            "Home"
+            "SidebarTab.Title.Home"
         case .settings:
-            "Settings"
-        default:
-            "Unknown"
+            "SidebarTab.Title.Settings"
         }
     }
     
-    var icon: String {
+    public var icon: String {
         switch self {
         case .home:
             "house"
         case .settings:
             "gear"
-        default:
-            "questionmark.circle"
         }
     }
 }
