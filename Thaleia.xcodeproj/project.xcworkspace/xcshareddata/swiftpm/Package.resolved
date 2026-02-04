@@ -1,0 +1,15 @@
+{
+  "originHash" : "b58dda22d7257a2e42e5775c882f54785bd82526b549f17568c90bc756ce9c3f",
+  "pins" : [
+    {
+      "identity" : "requestspec",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ibrahimcetin/RequestSpec",
+      "state" : {
+        "revision" : "f3727f191a751f430f4cae64a0c642686955a859",
+        "version" : "0.2.0"
+      }
+    }
+  ],
+  "version" : 3
+}

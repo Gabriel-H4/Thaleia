@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5B79EDF92ECFE82B009C7CFB /* RequestSpec in Frameworks */ = {isa = PBXBuildFile; productRef = 5B79EDF82ECFE82B009C7CFB /* RequestSpec */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		5B091E8C2D98A46E00C913BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B79EDF92ECFE82B009C7CFB /* RequestSpec in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +96,7 @@
 				5B091E7C2D98A46C00C913BB /* Thaleia */,
 				5B091E8E2D98A46E00C913BB /* ThaleiaTests */,
 				5B091E982D98A46E00C913BB /* ThaleiaUITests */,
+				5B4CBCA42EAAE572008A2815 /* Frameworks */,
 				5B091E7B2D98A46C00C913BB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,6 +109,13 @@
 				5B091E952D98A46E00C913BB /* ThaleiaUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5B4CBCA42EAAE572008A2815 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +138,7 @@
 			);
 			name = Thaleia;
 			packageProductDependencies = (
+				5B79EDF82ECFE82B009C7CFB /* RequestSpec */,
 			);
 			productName = Thaleia;
 			productReference = 5B091E7A2D98A46C00C913BB /* Thaleia.app */;
@@ -208,6 +222,9 @@
 			);
 			mainGroup = 5B091E712D98A46C00C913BB;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				5B79EDF72ECFE803009C7CFB /* XCRemoteSwiftPackageReference "RequestSpec" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5B091E7B2D98A46C00C913BB /* Products */;
 			projectDirPath = "";
@@ -417,6 +434,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Thaleia/Thaleia.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -431,6 +449,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Thaleia;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Needed to access local Overseerr and Plex Servers";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -439,6 +458,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielhassebrock.Thaleia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 			};
@@ -451,6 +472,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Thaleia/Thaleia.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -465,6 +487,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Thaleia;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Needed to access local Overseerr and Plex Servers";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -473,6 +496,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielhassebrock.Thaleia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 			};
@@ -586,6 +611,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5B79EDF72ECFE803009C7CFB /* XCRemoteSwiftPackageReference "RequestSpec" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ibrahimcetin/RequestSpec";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5B79EDF82ECFE82B009C7CFB /* RequestSpec */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B79EDF72ECFE803009C7CFB /* XCRemoteSwiftPackageReference "RequestSpec" */;
+			productName = RequestSpec;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5B091E722D98A46C00C913BB /* Project object */;
 }
