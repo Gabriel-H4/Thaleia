@@ -1,0 +1,7 @@
+{
+    "MediaContainer": {
+        "version": "1.23.4.5678-a12bcd34e",
+        "friendlyName": "Demo Server",
+        "mediaProviders": true
+    }
+}

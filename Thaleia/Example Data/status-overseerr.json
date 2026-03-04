@@ -1,0 +1,7 @@
+{
+    "version": "1.2.3",
+    "commitTag": "abc123",
+    "updateAvailable": true,
+    "commitsBehind": 0,
+    "restartRequired": true
+}
