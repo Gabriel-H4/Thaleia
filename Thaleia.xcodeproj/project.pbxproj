@@ -6,10 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		5B79EDF92ECFE82B009C7CFB /* RequestSpec in Frameworks */ = {isa = PBXBuildFile; productRef = 5B79EDF82ECFE82B009C7CFB /* RequestSpec */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		5B091E8C2D98A46E00C913BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -69,7 +65,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B79EDF92ECFE82B009C7CFB /* RequestSpec in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +133,6 @@
 			);
 			name = Thaleia;
 			packageProductDependencies = (
-				5B79EDF82ECFE82B009C7CFB /* RequestSpec */,
 			);
 			productName = Thaleia;
 			productReference = 5B091E7A2D98A46C00C913BB /* Thaleia.app */;
@@ -223,7 +217,6 @@
 			mainGroup = 5B091E712D98A46C00C913BB;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				5B79EDF72ECFE803009C7CFB /* XCRemoteSwiftPackageReference "RequestSpec" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5B091E7B2D98A46C00C913BB /* Products */;
@@ -439,6 +432,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = MY7692F7R6;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
@@ -478,6 +472,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = MY7692F7R6;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
@@ -613,25 +608,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		5B79EDF72ECFE803009C7CFB /* XCRemoteSwiftPackageReference "RequestSpec" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ibrahimcetin/RequestSpec";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		5B79EDF82ECFE82B009C7CFB /* RequestSpec */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5B79EDF72ECFE803009C7CFB /* XCRemoteSwiftPackageReference "RequestSpec" */;
-			productName = RequestSpec;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5B091E722D98A46C00C913BB /* Project object */;
 }

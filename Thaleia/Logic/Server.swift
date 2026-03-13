@@ -5,10 +5,87 @@
 //  Created by Gabriel Hassebrock on 2/8/26.
 //
 
-import RequestSpec
+import SwiftUI
 
-protocol Server: NetworkService {
-    var credential: Credential { get }
+struct Server {
 
-    mutating func refreshCredentials() async throws(ThaleiaError)
+    private(set) var kind: Server.Kind
+    private(set) var credential: Credential
+    var status: Server.ConnectionStatus {
+        return self.credential != Credential.empty
+            ? Server.ConnectionStatus.connected : Server.ConnectionStatus.notConfigured
+    }
+
+    mutating func refreshCredentials() async throws(ThaleiaError) {
+        if let newCredential = try KeychainHandler.perform(
+            .get,
+            using: credential
+        ) {
+            self.credential = newCredential
+        }
+    }
+}
+
+extension Server {
+    enum Kind: LabelRepresentable {
+        case plex
+        case seerr
+
+        var localizedText: String {
+            switch self {
+            case .plex:
+                return String(localized: "Server.Kind.plex")
+            case .seerr:
+                return String(localized: "Server.Kind.seerr")
+            }
+        }
+
+        var systemIcon: String {
+            switch self {
+            case .plex:
+                return "film"
+            case .seerr:
+                return "list.clipboard"
+            }
+        }
+    }
+
+    enum ConnectionStatus: LabelRepresentable {
+        case connected
+        case disconnected
+        case notConfigured
+
+        var localizedText: String {
+            switch self {
+            case .connected:
+                return String(localized: "Server.ConnectionStatus.connected")
+            case .disconnected:
+                return String(localized: "Server.ConnectionStatus.disconnected")
+            case .notConfigured:
+                return String(localized: "Server.ConnectionStatus.notConfigured")
+            }
+        }
+
+        var systemIcon: String {
+            switch self {
+            case .connected:
+                return "checkmark.circle"
+            case .disconnected:
+                return "xmark.circle"
+            case .notConfigured:
+                return "questionmark.circle"
+            }
+        }
+
+        var color: Color {
+            switch self {
+            case .connected:
+                return Color.green.opacity(0.25)
+            case .disconnected:
+                return Color.red.opacity(0.25)
+            case .notConfigured:
+                return Color.yellow.opacity(0.25)
+            }
+        }
+    }
 }

@@ -13,8 +13,20 @@ struct HomeView: View {
 
     var body: some View {
         VStack {
-            ServerCard(server: dataModel.plexServer)
-            ServerCard(server: dataModel.overseerrServer)
+            HStack {
+                Spacer()
+                ServerCard(server: dataModel.plexServer)
+                Spacer()
+                ServerCard(server: dataModel.seerrServer)
+                Spacer()
+            }
+            .padding()
+            Spacer()
         }
+        .containerShape(Capsule(style: .continuous))
     }
+}
+
+#Preview {
+    HomeView()
 }

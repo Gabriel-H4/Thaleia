@@ -17,9 +17,9 @@ struct ThaleiaError: Error, LocalizedError, Equatable {
     let isFatal: Bool
 
     init(
-        file: String,
-        function: String,
-        line: Int,
+        file: String = #file,
+        function: String = #function,
+        line: Int = #line,
         errorDescription: String?,
         recoverySuggestion: String?,
         failureReason: String?,
@@ -36,9 +36,9 @@ struct ThaleiaError: Error, LocalizedError, Equatable {
 
     init(
         using template: ReusableThaleiaError,
-        file: String,
-        function: String,
-        line: Int
+        file: String = #file,
+        function: String = #function,
+        line: Int = #line
     ) {
         self.file = file
         self.function = function
@@ -52,7 +52,11 @@ struct ThaleiaError: Error, LocalizedError, Equatable {
 
 extension ThaleiaError: CustomStringConvertible {
     var description: String {
-        "ThaleiaError(file: \(file), function: \(function), line: \(line), errorDescription: \(errorDescription ?? "N/A"), recoverySuggestion: \(recoverySuggestion ?? "N/A"), failureReason: \(failureReason ?? "N/A"), isFatal: \(isFatal))"
+        let errorDescription = self.errorDescription ?? "N/A"
+        let recoverySuggestion = self.recoverySuggestion ?? "N/A"
+        let failureReason = self.failureReason ?? "N/A"
+        
+        return "ThaleiaError(file: \(file), function: \(function), line: \(line), errorDescription: \(errorDescription), recoverySuggestion: \(recoverySuggestion), failureReason: \(failureReason), isFatal: \(isFatal))"
     }
 }
 

@@ -13,7 +13,7 @@ struct KeychainView: View {
 
     var body: some View {
         Form {
-
+            
             Section {
                 TextField(
                     "KeychainView.TextField.CredentialURL",
@@ -33,15 +33,15 @@ struct KeychainView: View {
             } header: {
                 Label(
                     "KeychainView.Label.CredentialSearch",
-                    systemImage: "magnifyingglass"
+                    systemImage: "line.3.horizontal.decrease"
                 )
             }
 
             Spacer()
-
+ 
             Section {
                 Label(
-                    "KeychainView.TextField.CredentialURL.\(dataModel.keychainResponse?.url.absoluteString ?? "")",
+                    "KeychainView.TextField.CredentialURL.\(dataModel.keychainResponse?.url.string ?? "")",
                     systemImage: "link"
                 )
                 Label(
@@ -72,6 +72,7 @@ struct KeychainView: View {
             }
             .disabled(dataModel.credentialUrl.isEmpty)
         }
+        
         .padding()
         .navigationTitle("Keychain View")
         .sheet(isPresented: $dataModel.keychainErrorIsShowing) {

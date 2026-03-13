@@ -34,9 +34,6 @@ struct ErrorView: View {
 
 #Preview {
     let error = ThaleiaError(
-        file: #file,
-        function: #function,
-        line: #line,
         errorDescription: String(localized: "Unable to Fetch Information"),
         recoverySuggestion: String(
             localized:

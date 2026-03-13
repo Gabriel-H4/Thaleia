@@ -16,12 +16,14 @@ struct KeychainHandler {
         using credential: Credential,
         _ retry: Bool = true
     ) throws(ThaleiaError) -> Credential? {
+        Logger.Thaleia.keychain.logger
+            .info(
+                "Starting to process \(operation.rawValue, privacy: .public) with Credential \(String(describing: credential), privacy: .public)"
+            )
+
         guard let query = buildQuery(operation, using: credential) else {
             throw ThaleiaError(
-                using: KeychainError.invalidURL.reusableError,
-                file: #file,
-                function: #function,
-                line: #line
+                using: KeychainError.invalidURL.reusableError
             )
         }
 
@@ -60,21 +62,21 @@ struct KeychainHandler {
 
         switch operationStatus {
         case errSecSuccess:
-            Logger.keychain.info(
+            Logger.Thaleia.keychain.logger.info(
                 "KeychainHandler.Operation.\(operation.rawValue, privacy: .public) succeeded with result \(String(describing: credential), privacy: .public)."
             )
-            Logger.keychain
+            Logger.Thaleia.keychain.logger
                 .info(
                     "The Keychain returned: \(String(describing: result), privacy: .public)"
                 )
         case errSecDuplicateItem:
-            Logger.keychain
+            Logger.Thaleia.keychain.logger
                 .warning(
                     "KeychainHandler.Operation.\(operation.rawValue, privacy: .public) found multiple matching credentials while searching for \(String(describing: credential), privacy: .public)."
                 )
             let _ = try perform(.update, using: credential, false)
         case errSecItemNotFound:
-            Logger.keychain.warning(
+            Logger.Thaleia.keychain.logger.warning(
                 "KeychainHandler.Operation.\(operation.rawValue, privacy: .public) failed to find a matching credential while searching for \(String(describing: credential))."
             )
             throw ThaleiaError(
@@ -84,7 +86,7 @@ struct KeychainHandler {
                 line: #line
             )
         default:
-            Logger.keychain.error(
+            Logger.Thaleia.keychain.logger.error(
                 "KeychainHandler.Operation.\(operation.rawValue, privacy: .public) failed for an unexpected reason. Error: \(operationStatus.description, privacy: .public), \(String(describing: credential), privacy: .public)."
             )
             throw ThaleiaError(
@@ -98,7 +100,7 @@ struct KeychainHandler {
         }
         if operation == .get {
             guard let data = result as? [String: Any] else {
-                Logger.keychain
+                Logger.Thaleia.keychain.logger
                     .error(
                         "Unable to convert the Keychain response to a valid dictionary. \(result.debugDescription, privacy: .public)"
                     )
@@ -110,7 +112,7 @@ struct KeychainHandler {
                 )
             }
 
-            Logger.keychain.info(
+            Logger.Thaleia.keychain.logger.info(
                 "Converted data from Keychain into a valid dictionary: \(data.description, privacy: .public)"
             )
 
@@ -118,7 +120,7 @@ struct KeychainHandler {
                 let apiKeyData = data["v_Data"] as? Data,
                 let apiKey = String(data: apiKeyData, encoding: .utf8)
             else {
-                Logger.keychain.error(
+                Logger.Thaleia.keychain.logger.error(
                     "Couldn't decode a valid username and/or apiKey from the Keychain response."
                 )
                 throw ThaleiaError(
@@ -136,7 +138,7 @@ struct KeychainHandler {
                     string: "\(urlProtocol)://\(urlServer):\(String(urlPort))"
                 )
             else {
-                Logger.keychain.error(
+                Logger.Thaleia.keychain.logger.error(
                     "Couldn't decode a valid URL from the Keychain response."
                 )
                 throw ThaleiaError(
@@ -150,16 +152,18 @@ struct KeychainHandler {
             let credential = Credential(
                 username: username,
                 apiKey: apiKey,
-                url: url
+                url: ThaleiaURL(string: url.absoluteString)
             )
 
-            Logger.keychain
+            Logger.Thaleia.keychain.logger
                 .info(
                     "Retrieved Credential: \(String(describing: credential), privacy: .public)"
                 )
             return credential
         }
-        Logger.keychain.info("")
+        Logger.Thaleia.keychain.logger.info(
+            "Returning nil as the operation requested does not require a response"
+        )
         return nil
     }
 }
@@ -176,16 +180,16 @@ extension KeychainHandler {
         -> [String: Any]?
     {
 
-        Logger.keychain.info(
+        Logger.Thaleia.keychain.logger.info(
             "Building query for \(String(describing: operation), privacy: .public), using \(String(describing: credential), privacy: .public)"
         )
 
         guard let encodedApiKey = credential.encodedApiKey,
-            let host = credential.url.host,
-            let scheme = credential.url.scheme,
-            let port = credential.url.port
+            let host = credential.url.url?.host(),
+            let scheme = credential.url.getScheme(),
+            let port = credential.url.getPort()
         else {
-            Logger.keychain.error(
+            Logger.Thaleia.keychain.logger.error(
                 "Unable to build query with a malformed Credential. host, encodedApiKey, scheme or port is nil."
             )
             return nil
@@ -206,7 +210,8 @@ extension KeychainHandler {
         // but exclude update operations
         if !credential.username.isEmpty && operation != .update {
             baseQuery[kSecAttrAccount as String] = credential.username
-            Logger.keychain.info("Added kSecAttrAccount to baseQuery")
+            Logger.Thaleia.keychain.logger
+                .info("Added kSecAttrAccount to baseQuery")
         }
 
         switch operation {
@@ -217,7 +222,7 @@ extension KeychainHandler {
             baseQuery[kSecReturnAttributes as String] = true
             baseQuery[kSecReturnData as String] = true
 
-            Logger.keychain.info(
+            Logger.Thaleia.keychain.logger.info(
                 "Added kSecReturnAttributes and kSecReturnData to baseQuery"
             )
 
@@ -226,7 +231,8 @@ extension KeychainHandler {
             // Include the credential password for save operations
             baseQuery[kSecValueData as String] = encodedApiKey
 
-            Logger.keychain.info("Added kSecValueData to baseQuery")
+            Logger.Thaleia.keychain.logger
+                .info("Added kSecValueData to baseQuery")
 
         case .delete, .update:
             break

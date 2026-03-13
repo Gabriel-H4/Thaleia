@@ -7,24 +7,20 @@
 
 import Foundation
 
-struct Credential {
+struct Credential: Equatable {
     var username: String
     var apiKey: String
-    var url: URL
+    var url: ThaleiaURL
 
     var encodedApiKey: Data? {
         return apiKey.data(using: .utf8)
     }
-    var port: Int? {
-        return ThaleiaURL.getPort(from: url)
-    }
-    var scheme: String? {
-        return ThaleiaURL.getScheme(from: url)
-    }
 
-    init(username: String = "", apiKey: String = "", url: URL) {
+    init(username: String = "", apiKey: String = "", url: ThaleiaURL) {
         self.username = username
         self.apiKey = apiKey
         self.url = url
     }
+
+    static let empty = Credential(url: ThaleiaURL(string: ""))
 }

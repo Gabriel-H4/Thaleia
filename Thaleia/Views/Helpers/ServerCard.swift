@@ -10,15 +10,39 @@ import SwiftUI
 struct ServerCard: View {
 
     let server: Server
-    @State private var serverKey: String? = nil
 
     var body: some View {
-        VStack {
-            Text("Server Name")
-            Text(server.baseURL.absoluteString)
-            Text(serverKey ?? "*****")
-            Button("Fetch Server Key") {
-            }
+        VStack(alignment: .leading) {
+            Text(server.kind.localizedText)
+                .font(.headline)
+            Label(
+                title: {
+                    Text(server.status.localizedText)
+                },
+                icon: {
+                    Image(systemName: server.status.systemIcon)
+                        .imageScale(.medium)
+                        .symbolRenderingMode(.monochrome)
+                }
+            )
+            .font(.subheadline)
+        }
+        .padding()
+        .background {
+            ContainerRelativeShape()
+                .fill(server.status.color)
         }
     }
+}
+
+#Preview {
+    let server = Server(
+        kind: .plex,
+        credential: Credential(
+            username: "demo",
+            apiKey: "key123",
+            url: ThaleiaURL(string: "https://example.com")
+        )
+    )
+    ServerCard(server: server)
 }

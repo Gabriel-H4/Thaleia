@@ -41,8 +41,8 @@ extension KeychainView {
                     operation,
                     using: credential
                 ) {
-                    Logger.views.info(
-                        "Successfully performed \(operation.rawValue), response: \(String(reflecting: result))."
+                    Logger.Thaleia.viewModel.logger.info(
+                        "Successfully performed \(operation.rawValue, privacy: .public), response: \(String(reflecting: result), privacy: .public)."
                     )
                     self.keychainResponse = result
                 }
@@ -64,12 +64,13 @@ extension KeychainView {
             return Credential(
                 username: self.credentialUsername,
                 apiKey: self.credentialApiKey,
-                url: url
+                url: ThaleiaURL(string: url.absoluteString)
             )
         }
 
         private func didEncounterError(_ error: ThaleiaError) {
-            Logger.views.error("\(String(describing: error), privacy: .public)")
+            Logger.Thaleia.viewModel.logger
+                .error("\(String(describing: error), privacy: .public)")
             self.keychainError = error
             self.keychainErrorIsShowing = true
         }

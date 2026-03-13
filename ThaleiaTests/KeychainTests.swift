@@ -16,7 +16,7 @@ struct KeychainTests {
     let credential = Credential(
         username: "demouser",
         apiKey: "key123",
-        url: URL(string: "https://example.com:40123")!
+        url: ThaleiaURL(string: "https://example.com:40123")
     )
 
     @Test func saveCredential() async throws {

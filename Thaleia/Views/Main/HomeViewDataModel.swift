@@ -10,15 +10,14 @@ import SwiftUI
 extension HomeView {
     @Observable
     final class DataModel {
-        var plexServer = PlexServer(
-            credential: Credential(
-                url: URL(string: "https://example.com/plex")!
-            )
+        var plexServer = Server(
+            kind: .plex,
+            credential: Credential.empty
         )
-        var overseerrServer = OverseerrServer(
-            credential: Credential(
-                url: URL(string: "https://example.com/overseerr")!
-            )
+        var seerrServer = Server(
+            kind: .seerr,
+            credential: Credential.empty
         )
     }
 }
+
