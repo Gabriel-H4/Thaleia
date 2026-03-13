@@ -8,16 +8,55 @@
 extension Network {
     enum Error {
         case invalidResponse
-        
-        var reusableError: ReusableThaleiaError {
+        case responseParsingFailure
+        case other
+
+        var template: ReusableThaleiaError {
             switch self {
-                case .invalidResponse:
-                    return ReusableThaleiaError(
-                        errorDescription: String(localized: "Network.Error.invalidResponse.errorDescription"),
-                        recoverySuggestion: String(localized: "Network.Error.invalidResponse.recoverySuggestion"),
-                        failureReason: String(localized: "Network.Error.invalidResponse.failureReason"),
-                        isFatal: false
-                    )
+            case .invalidResponse:
+                return ReusableThaleiaError(
+                    errorDescription: String(
+                        localized:
+                            "Network.Error.invalidResponse.errorDescription"
+                    ),
+                    recoverySuggestion: String(
+                        localized:
+                            "Network.Error.invalidResponse.recoverySuggestion"
+                    ),
+                    failureReason: String(
+                        localized: "Network.Error.invalidResponse.failureReason"
+                    ),
+                    isFatal: false
+                )
+            case .responseParsingFailure:
+                return ReusableThaleiaError(
+                    errorDescription: String(
+                        localized:
+                            "Network.Error.responseParsingFailure.errorDescription"
+                    ),
+                    recoverySuggestion: String(
+                        localized:
+                            "Network.Error.responseParsingFailure.recoverySuggestion"
+                    ),
+                    failureReason: String(
+                        localized:
+                            "Network.Error.responseParsingFailure.failureReason"
+                    ),
+                    isFatal: false
+                )
+            case .other:
+                return ReusableThaleiaError(
+                    errorDescription: String(
+                        localized: "Network.Error.other.errorDescription"
+                    ),
+                    recoverySuggestion: String(
+                        localized: "Network.Error.other.recoverySuggestion"
+                    ),
+                    failureReason: String(
+                        localized: "Network.Error.other.failureReason"
+                    ),
+                    isFatal: false
+                )
             }
         }
     }

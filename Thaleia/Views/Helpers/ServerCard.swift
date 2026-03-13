@@ -26,6 +26,12 @@ struct ServerCard: View {
                 }
             )
             .font(.subheadline)
+            Button("Refresh") {
+                Task {
+                    let a = try await server.getStatus()
+                    print(a.localizedText)
+                }
+            }
         }
         .padding()
         .background {

@@ -16,7 +16,7 @@ extension HomeView {
         )
         var seerrServer = Server(
             kind: .seerr,
-            credential: Credential.empty
+            credential: Credential(url: ThaleiaURL(string: "http://127.0.0.1:8081/status-overseerr.json"))
         )
     }
 }

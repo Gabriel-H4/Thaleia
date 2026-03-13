@@ -47,6 +47,9 @@ struct ThaleiaError: Error, LocalizedError, Equatable {
         self.recoverySuggestion = template.recoverySuggestion
         self.failureReason = template.failureReason
         self.isFatal = template.isFatal
+        print(
+            "Created a new ThaleiaError! (file: \(file), function: \(function), line: \(line), errorDescription: \(String(describing: template.errorDescription)), recoverySuggestion: \(String(describing: template.recoverySuggestion)), failureReason: \(String(describing: template.failureReason)), isFatal: \(template.isFatal))"
+        )
     }
 }
 
@@ -55,8 +58,9 @@ extension ThaleiaError: CustomStringConvertible {
         let errorDescription = self.errorDescription ?? "N/A"
         let recoverySuggestion = self.recoverySuggestion ?? "N/A"
         let failureReason = self.failureReason ?? "N/A"
-        
-        return "ThaleiaError(file: \(file), function: \(function), line: \(line), errorDescription: \(errorDescription), recoverySuggestion: \(recoverySuggestion), failureReason: \(failureReason), isFatal: \(isFatal))"
+
+        return
+            "ThaleiaError(file: \(file), function: \(function), line: \(line), errorDescription: \(errorDescription), recoverySuggestion: \(recoverySuggestion), failureReason: \(failureReason), isFatal: \(isFatal))"
     }
 }
 
