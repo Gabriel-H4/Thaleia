@@ -19,7 +19,7 @@ extension KeychainView {
         var credentialApiKey: String = ""
         var credentialUrl: String = ""
 
-        var keychainResponse: Credential? = nil
+        var keychainResponse: Keychain.Credential? = nil
         var keychainError: ThaleiaError? = nil
         var keychainErrorIsShowing: Bool {
             get {
@@ -34,10 +34,10 @@ extension KeychainView {
             }
         }
 
-        func performKeychainOperation(_ operation: KeychainHandler.Operation) {
+        func performKeychainOperation(_ operation: Keychain.Action) {
             do {
                 let credential = try buildCredential()
-                if let result = try KeychainHandler.perform(
+                if let result = try Keychain.perform(
                     operation,
                     using: credential
                 ) {
@@ -51,19 +51,18 @@ extension KeychainView {
             }
         }
 
-        private func buildCredential() throws(ThaleiaError) -> Credential {
+        private func buildCredential() throws(ThaleiaError) -> Keychain.Credential {
             guard let url = URL(string: self.credentialUrl) else {
                 throw ThaleiaError(
-                    using: KeychainHandler.KeychainError.invalidURL
-                        .reusableError,
+                    using: Keychain.Error.invalidURL.template,
                     file: #file,
                     function: #function,
                     line: #line
                 )
             }
-            return Credential(
+            return Keychain.Credential(
                 username: self.credentialUsername,
-                apiKey: self.credentialApiKey,
+                password: self.credentialApiKey,
                 url: ThaleiaURL(string: url.absoluteString)
             )
         }

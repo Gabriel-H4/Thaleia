@@ -8,6 +8,7 @@
 import Foundation
 
 struct Network {
+
     private init() {}
 
     static func getData<T: Decodable>(request: Network.Request, as type: T.Type)

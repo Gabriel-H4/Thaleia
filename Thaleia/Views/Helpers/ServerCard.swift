@@ -44,9 +44,9 @@ struct ServerCard: View {
 #Preview {
     let server = Server(
         kind: .plex,
-        credential: Credential(
+        credential: Keychain.Credential(
             username: "demo",
-            apiKey: "key123",
+            password: "key123",
             url: ThaleiaURL(string: "https://example.com")
         )
     )

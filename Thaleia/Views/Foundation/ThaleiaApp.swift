@@ -13,6 +13,9 @@ struct ThaleiaApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onAppear {
+                    Onboarding.Config.registerDefaultConfig()
+                }
         }
     }
 }

@@ -49,7 +49,7 @@ struct KeychainView: View {
                     systemImage: "person.fill"
                 )
                 Label(
-                    "KeychainView.TextField.CredentialAPIKey.\(dataModel.keychainResponse?.apiKey ?? "")",
+                    "KeychainView.TextField.CredentialAPIKey.\(dataModel.keychainResponse?.password ?? "")",
                     systemImage: "key.fill"
                 )
             } header: {
@@ -61,10 +61,10 @@ struct KeychainView: View {
 
             Section {
                 HStack {
-                    ForEach(KeychainHandler.Operation.allCases, id: \.self) {
-                        operation in
-                        Button(operation.rawValue.capitalized) {
-                            dataModel.performKeychainOperation(operation)
+                    ForEach(Keychain.Action.allCases, id: \.self) {
+                        action in
+                        Button(action.rawValue.capitalized) {
+                            dataModel.performKeychainOperation(action)
                         }
                     }
                 }

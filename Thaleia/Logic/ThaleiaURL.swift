@@ -14,20 +14,14 @@ struct ThaleiaURL: Equatable {
         URL(string: string)
     }
 
-    func getScheme() -> String? {
-
-        Logger.Thaleia.helpers.logger
-            .debug(
-                "Got scheme: \(url?.scheme ?? "N/A", privacy: .public) from: \(url?.absoluteString ?? "N/A", privacy: .public)"
-            )
-
-        return self.url?.scheme?.lowercased()
+    var scheme: String? {
+        self.url?.scheme?.lowercased()
     }
 
     func getPort() -> Int? {
 
         guard let url = self.url,
-            let scheme = url.scheme?.lowercased()
+            let scheme = self.scheme
         else {
             return nil
         }

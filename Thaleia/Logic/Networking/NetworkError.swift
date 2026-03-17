@@ -11,10 +11,10 @@ extension Network {
         case responseParsingFailure
         case other
 
-        var template: ReusableThaleiaError {
+        var template: ThaleiaErrorTemplate {
             switch self {
             case .invalidResponse:
-                return ReusableThaleiaError(
+                return ThaleiaErrorTemplate(
                     errorDescription: String(
                         localized:
                             "Network.Error.invalidResponse.errorDescription"
@@ -29,7 +29,7 @@ extension Network {
                     isFatal: false
                 )
             case .responseParsingFailure:
-                return ReusableThaleiaError(
+                return ThaleiaErrorTemplate(
                     errorDescription: String(
                         localized:
                             "Network.Error.responseParsingFailure.errorDescription"
@@ -45,7 +45,7 @@ extension Network {
                     isFatal: false
                 )
             case .other:
-                return ReusableThaleiaError(
+                return ThaleiaErrorTemplate(
                     errorDescription: String(
                         localized: "Network.Error.other.errorDescription"
                     ),
