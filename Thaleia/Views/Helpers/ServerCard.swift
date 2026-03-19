@@ -31,7 +31,7 @@ struct ServerCard: View {
             )
             .font(.subheadline)
             if #available(macOS 26.0, *) {
-                Button("Refresh") {
+                Button("ServerCard.refreshStatus") {
                     Task {
                         await dataModel.refreshStatus()
                     }
@@ -39,7 +39,7 @@ struct ServerCard: View {
                 .buttonStyle(GlassButtonStyle())
             }
             else {
-                Button("Refresh") {
+                Button("ServerCard.refreshStatus") {
                     Task {
                         await dataModel.refreshStatus()
                     }

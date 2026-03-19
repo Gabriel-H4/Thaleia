@@ -27,9 +27,9 @@ struct ContentView: View {
             case .home:
                 HomeView()
             case .contentQuality:
-                Text("Review Content Quality")
+                Text("ContentView.detail.contentQuality")
             case .contentRequests:
-                Text("Review Content Requests")
+                Text("ContentView.detail.contentRequests")
             case .keychain:
                 KeychainView()
             }
