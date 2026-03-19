@@ -23,7 +23,6 @@ struct HomeView: View {
             .padding()
             Spacer()
         }
-        .containerShape(Capsule(style: .continuous))
     }
 }
 

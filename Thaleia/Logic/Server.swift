@@ -12,36 +12,8 @@ struct Server {
     private(set) var kind: Server.Kind
     private(set) var credential: Keychain.Credential
 
-    var status: Server.ConnectionStatus {
-        return .notConfigured
-    }
-
     var isConfigured: Bool {
         return self.credential != Keychain.Credential.empty
-    }
-
-    func getStatus() async throws(ThaleiaError) -> Server.ConnectionStatus {
-        guard self.isConfigured else {
-            return .notConfigured
-        }
-        switch self.kind {
-        case .plex:
-            return .notConfigured
-        case .seerr:
-            let networkResponse = try await Network.getData(
-                request: Network.Request(
-                    url: self.credential.url.url!,
-                    method: .get,
-                    contentType: .json,
-                    headers: [:]
-                ),
-                as: SeerrAPI.Status.self
-            )
-            if networkResponse.version != "" {
-                return .connected
-            }
-            return .disconnected
-        }
     }
 }
 

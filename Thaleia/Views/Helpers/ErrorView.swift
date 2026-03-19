@@ -11,6 +11,10 @@ struct ErrorView: View {
 
     @Environment(\.dismiss) private var dismiss
     let error: ThaleiaError
+    
+    init(error: ThaleiaError?) {
+        self.error = error ?? ThaleiaError(using: ThaleiaErrorTemplate.base)
+    }
 
     var body: some View {
         ContentUnavailableView {
@@ -33,16 +37,5 @@ struct ErrorView: View {
 }
 
 #Preview {
-    let error = ThaleiaError(
-        errorDescription: String(localized: "Unable to Fetch Information"),
-        recoverySuggestion: String(
-            localized:
-                "Try again in a few minutes, and send session data to email@example.com."
-        ),
-        failureReason: String(
-            localized: "The server returned a 418 status code."
-        ),
-        isFatal: false
-    )
-    ErrorView(error: error)
+    ErrorView(error: nil)
 }

@@ -8,35 +8,58 @@
 import SwiftUI
 
 struct ServerCard: View {
-
-    let server: Server
+    
+    @State private var dataModel: DataModel
+    
+    init(server: Server) {
+        self.dataModel = ServerCard.DataModel(server: server)
+    }
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text(server.kind.localizedText)
+            Text(dataModel.server.kind.localizedText)
                 .font(.headline)
             Label(
                 title: {
-                    Text(server.status.localizedText)
+                    Text(dataModel.status.localizedText)
                 },
                 icon: {
-                    Image(systemName: server.status.systemIcon)
+                    Image(systemName: dataModel.status.systemIcon)
                         .imageScale(.medium)
                         .symbolRenderingMode(.monochrome)
                 }
             )
             .font(.subheadline)
-            Button("Refresh") {
-                Task {
-                    let a = try await server.getStatus()
-                    print(a.localizedText)
+            if #available(macOS 26.0, *) {
+                Button("Refresh") {
+                    Task {
+                        await dataModel.refreshStatus()
+                    }
+                }
+                .buttonStyle(GlassButtonStyle())
+            }
+            else {
+                Button("Refresh") {
+                    Task {
+                        await dataModel.refreshStatus()
+                    }
                 }
             }
         }
         .padding()
         .background {
-            ContainerRelativeShape()
-                .fill(server.status.color)
+            if #available(macOS 26.0, *) {
+                ContainerRelativeShape()
+                    .fill(dataModel.status.color)
+                    .glassEffect(in: .containerRelative)
+            } else {
+                    // Fallback on earlier versions
+                ContainerRelativeShape()
+                    .fill(dataModel.status.color)
+            }
+        }
+        .sheet(isPresented: $dataModel.errorViewIsShowing) {
+            ErrorView(error: dataModel.error)
         }
     }
 }

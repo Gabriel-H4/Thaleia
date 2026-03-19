@@ -10,4 +10,11 @@ struct ThaleiaErrorTemplate {
     let recoverySuggestion: String
     let failureReason: String
     let isFatal: Bool
+    
+    static let base = ThaleiaErrorTemplate(
+        errorDescription: String(localized: "ThaleiaErrorTemplate.base.errorDescription"),
+        recoverySuggestion: String(localized: "ThaleiaErrorTemplate.base.recoverySuggestion"),
+        failureReason: String(localized: "ThaleiaErrorTemplate.base.failureReason"),
+        isFatal: true
+    )
 }

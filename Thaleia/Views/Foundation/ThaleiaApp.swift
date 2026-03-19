@@ -13,6 +13,7 @@ struct ThaleiaApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .containerShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .onAppear {
                     Onboarding.Config.registerDefaultConfig()
                 }

@@ -11,8 +11,8 @@ extension Network {
     struct Request {
         var url: URL
         var method: Method
-        var contentType: ContentType
-        var headers: [String: String]
+        var contentType: ContentType = .json
+        var headers: [String: String] = [:]
         
         enum Method: String {
             case get = "GET"

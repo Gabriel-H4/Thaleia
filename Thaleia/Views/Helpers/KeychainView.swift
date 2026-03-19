@@ -66,6 +66,7 @@ struct KeychainView: View {
                         Button(action.rawValue.capitalized) {
                             dataModel.performKeychainOperation(action)
                         }
+                        .buttonStyle(.borderedProminent)
                     }
                 }
                 .padding()
@@ -76,14 +77,7 @@ struct KeychainView: View {
         .padding()
         .navigationTitle("Keychain View")
         .sheet(isPresented: $dataModel.keychainErrorIsShowing) {
-            if let error = dataModel.keychainError {
-                ErrorView(error: error)
-            } else {
-                ContentUnavailableView(
-                    "ContentUnavailableView.Label.NoErrorFound.Text",
-                    image: "stethoscope"
-                )
-            }
+            ErrorView(error: dataModel.keychainError)
         }
     }
 }
