@@ -9,21 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @State private var dataModel = DataModel()
+    @Environment(DataModel.self) private var model: DataModel
 
     var body: some View {
+        @Bindable var model = model
+        
         NavigationSplitView {
             // Sidebar
-            List(
-                SidebarDestination.allCases,
-                selection: $dataModel.selectedDestination
-            ) { destination in
-                Label(destination.title, systemImage: destination.icon)
-                    .tag(destination)
+            List(selection: $model.sidebarDestination) {
+                ForEach(SidebarDestination.allCases) { destination in
+                    Label(destination.title, systemImage: destination.icon)
+                        .tag(destination)
+                }
             }
         } detail: {
             // Detail
-            switch dataModel.selectedDestination {
+            switch model.sidebarDestination {
             case .home:
                 HomeView()
             case .contentQuality:
@@ -35,4 +36,10 @@ struct ContentView: View {
             }
         }
     }
+}
+
+#Preview {
+    ContentView()
+        .environment(DataModel())
+        .modelContainer(for: Server.self, inMemory: true)
 }

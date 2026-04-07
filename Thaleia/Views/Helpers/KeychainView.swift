@@ -77,7 +77,7 @@ struct KeychainView: View {
         .padding()
         .navigationTitle("KeychainView.NavigationTitle")
         .sheet(isPresented: $dataModel.keychainErrorIsShowing) {
-            ErrorView(error: dataModel.keychainError)
+            ErrorView()
         }
     }
 }

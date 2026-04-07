@@ -9,14 +9,11 @@ import SwiftUI
 
 struct ErrorView: View {
 
+    @Environment(DataModel.self) private var model: DataModel
     @Environment(\.dismiss) private var dismiss
-    let error: ThaleiaError
-    
-    init(error: ThaleiaError?) {
-        self.error = error ?? ThaleiaError(using: ThaleiaErrorTemplate.base)
-    }
 
     var body: some View {
+        let error = model.error ?? ThaleiaError(using: ThaleiaErrorTemplate.base)
         ContentUnavailableView {
             Label(
                 error.errorDescription ?? "",
@@ -24,18 +21,46 @@ struct ErrorView: View {
                     ? "stethoscope" : "exclamationmark.triangle"
             )
         } description: {
-            Text(error.failureReason ?? "")
-            Text(error.recoverySuggestion ?? "")
-            if error.isFatal {
-                Text("ErrorView.Label.Fatal.Text")
-                    .font(.callout)
-                    .fontWeight(.bold)
+            VStack {
+                Text(error.failureReason ?? "")
+                    .padding(4)
+                Text(error.recoverySuggestion ?? "")
+                    .padding(.bottom)
+                if error.isFatal {
+                    Text("ErrorView.Label.Fatal.Text")
+                        .font(.callout)
+                        .fontWeight(.bold)
+                    HStack {
+                        Button {
+                            
+                        } label: {
+                            Label("Share Log", systemImage: "paperplane")
+                        }
+                        Button {
+                            exit(EXIT_FAILURE)
+                        } label: {
+                            Label("Close App", systemImage: "xmark.circle")
+                        }
+                    }
+                }
             }
         }
         .interactiveDismissDisabled(error.isFatal)
+        .toolbar {
+            if(!error.isFatal) {
+                ToolbarItem(placement: .navigation) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Label("Dismiss", systemImage: "xmark")
+                    }
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    ErrorView(error: nil)
+    ErrorView()
+        .environment(DataModel())
 }

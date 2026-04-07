@@ -8,70 +8,79 @@
 import SwiftUI
 
 struct ServerCard: View {
-    
-    @State private var dataModel: DataModel
-    
-    init(server: Server) {
-        self.dataModel = ServerCard.DataModel(server: server)
-    }
+
+    @Environment(DataModel.self) private var model
+    @State var server: Server
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text(dataModel.server.kind.localizedText)
+            Text(server.kind.localizedText)
                 .font(.headline)
             Label(
                 title: {
-                    Text(dataModel.status.localizedText)
+                    Text("Status")
                 },
                 icon: {
-                    Image(systemName: dataModel.status.systemIcon)
+                    Image(systemName: "questionmark")
+                        .bold()
                         .imageScale(.medium)
                         .symbolRenderingMode(.monochrome)
                 }
             )
             .font(.subheadline)
-            if #available(macOS 26.0, *) {
-                Button("ServerCard.refreshStatus") {
-                    Task {
-                        await dataModel.refreshStatus()
-                    }
+            .padding(.bottom)
+            if(true) {
+                Button("Configure") {
+                    model.isPresentingServerConfigureView = true
                 }
-                .buttonStyle(GlassButtonStyle())
             }
             else {
-                Button("ServerCard.refreshStatus") {
-                    Task {
-                        await dataModel.refreshStatus()
-                    }
+                Button("Info") {
+                    
+                }
+                Label(server.credentials.url.string, systemImage: "link")
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+                if(!server.credentials.username.isEmpty) {
+                    Label(server.credentials.username, systemImage: "person.fill")
                 }
             }
         }
         .padding()
         .background {
             if #available(macOS 26.0, *) {
-                ContainerRelativeShape()
-                    .fill(dataModel.status.color)
-                    .glassEffect(in: .containerRelative)
+                RoundedRectangle(cornerRadius: 16.0, style: .continuous)
+                    .fill(.yellow)
+                    .glassEffect(
+                        in: RoundedRectangle(
+                            cornerRadius: 16.0,
+                            style: .continuous
+                        )
+                    )
+//                ContainerRelativeShape()
+//                    .fill(status.color)
+//                    .glassEffect(in: .containerRelative)
             } else {
-                    // Fallback on earlier versions
+                // Fallback on earlier versions
                 ContainerRelativeShape()
-                    .fill(dataModel.status.color)
+                    .fill(.yellow)
             }
         }
-        .sheet(isPresented: $dataModel.errorViewIsShowing) {
-            ErrorView(error: dataModel.error)
-        }
+
     }
 }
 
 #Preview {
     let server = Server(
+        name: "Demo Server",
         kind: .plex,
-        credential: Keychain.Credential(
+        credentials: Keychain.Credential(
             username: "demo",
             password: "key123",
             url: ThaleiaURL(string: "https://example.com")
-        )
+        ),
+        version: "0.0.1"
     )
     ServerCard(server: server)
+        .environment(DataModel())
 }

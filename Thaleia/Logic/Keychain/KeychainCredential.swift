@@ -8,7 +8,7 @@
 import Foundation
 
 extension Keychain {
-    struct Credential: Equatable {
+    struct Credential: Equatable, Codable {
         var username: String = ""
         var password: String = ""
         var url: ThaleiaURL

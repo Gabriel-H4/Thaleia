@@ -8,7 +8,7 @@
 import Foundation
 import OSLog
 
-struct ThaleiaURL: Equatable {
+struct ThaleiaURL: Codable, Equatable {
     var string: String
     var url: URL? {
         URL(string: string)
