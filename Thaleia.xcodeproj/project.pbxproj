@@ -452,7 +452,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Thaleia;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Gabriel Hassebrock. All rights reserved.";
-				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Needed to access local Plex and Seerr Servers";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Thaleia needs access to the Local Network to access servers such as Plex and Seerr.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -501,7 +501,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Thaleia;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Gabriel Hassebrock. All rights reserved.";
-				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Needed to access local Plex and Seerr Servers";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Thaleia needs access to the Local Network to access servers such as Plex and Seerr.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
