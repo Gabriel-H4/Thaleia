@@ -22,10 +22,12 @@ struct MainContentView: View {
             }
         } content: {
             switch selectedSidebarTabItem {
-                case .home, .seerr:
-                    Text("Home / Seerr")
+                case .home:
+                    Text("MainContentView.home.text")
                 case .local:
                     LocalMediaContentView(selectedMediaItem: $selectedMediaItem)
+                case .seerr:
+                    Text("MainContentView.seerr.text")
             }
         } detail: {
             MediaDetailView(media: $selectedMediaItem)

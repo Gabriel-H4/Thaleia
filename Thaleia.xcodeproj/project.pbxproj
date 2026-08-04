@@ -449,7 +449,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Thaleia;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Gabriel Hassebrock. All rights reserved.";
-				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Thaleia needs access to the Local Network to access servers such as Plex and Seerr.";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Thaleia only needs access to the Local Network to access your Seerr server.";
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielhassebrock.Thaleia;
@@ -504,7 +504,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Thaleia;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Gabriel Hassebrock. All rights reserved.";
-				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Thaleia needs access to the Local Network to access servers such as Plex and Seerr.";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Thaleia only needs access to the Local Network to access your Seerr server.";
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielhassebrock.Thaleia;

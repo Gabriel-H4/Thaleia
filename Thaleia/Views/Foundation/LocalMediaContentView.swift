@@ -21,7 +21,7 @@ struct LocalMediaContentView: View {
                 MediaCardGridView(media: $discoveredMedia, selectedMediaItem: $selectedMediaItem)
             }
             else {
-                Button("Select a Directory") {
+                Button("LocalMediaContentView.filePickerButton.title") {
                     self.isShowingFilePicker = true
                 }
                 .padding()
@@ -37,7 +37,7 @@ struct LocalMediaContentView: View {
                     }
                     self.isShowingFilePicker = true
                 } label: {
-                    Label("Open File Picker", systemImage: "folder.badge.plus")
+                    Label("LocalMediaContentView.filePickerButton.title", systemImage: "folder.badge.plus")
                 }
             }
             ToolbarItem(placement: .secondaryAction) {
@@ -47,7 +47,7 @@ struct LocalMediaContentView: View {
                         discoveredMedia = Media.create(from: pathURL)
                     }
                 } label: {
-                    Label("Re-Analyze", systemImage: "arrow.clockwise")
+                    Label("LocalMediaContentView.refreshButton.title", systemImage: "arrow.clockwise")
                 }
                 .disabled(localPath == nil)
             }
@@ -55,7 +55,7 @@ struct LocalMediaContentView: View {
                 Button {
                     print("Filter button clicked")
                 } label: {
-                    Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
+                    Label("LocalMediaContentView.filterButton.title", systemImage: "line.3.horizontal.decrease.circle")
                 }
                 .disabled(localPath == nil)
             }

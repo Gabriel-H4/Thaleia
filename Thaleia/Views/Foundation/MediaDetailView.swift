@@ -8,18 +8,25 @@
 import SwiftUI
 
 struct MediaDetailView: View {
-    
+
     @Binding var media: Media?
-    
+
     var body: some View {
         if let media = media {
             List {
                 Section {
-                    Text(media.fileMetadata?.localizedName ?? "Unnamed")
-                        .font(.title)
+                    Text(
+                        media.fileMetadata?.localizedName
+                            ?? "MediaDetailView.media.noLocalizedName"
+                    )
+                    .font(.title)
                     Label(media.id.uuidString, systemImage: "tag")
                     Label(media.url.absoluteString, systemImage: "link")
-                    Label(media.fileMetadata?.contentType ?? "No Type", systemImage: "document")
+                    Label(
+                        media.fileMetadata?.contentType
+                            ?? "MediaDetailView.media.noContentType",
+                        systemImage: "document"
+                    )
                     Label(
                         ByteCountFormatter
                             .string(
@@ -31,29 +38,41 @@ struct MediaDetailView: View {
                         systemImage: "externaldrive"
                     )
                     HStack {
-                        Label("Readable", systemImage: "eye")
-                            .symbolVariant(
-                                media.fileMetadata?.isReadable ?? false ? .none : .slash
+                        if let isReadable = media.fileMetadata?.isReadable {
+                            Label(
+                                isReadable
+                                    ? "MediaDetailView.media.isReadable"
+                                    : "MediaDetailView.media.isNotReadable",
+                                systemImage: "eye"
                             )
+                            .symbolVariant(isReadable ? .none : .slash)
+                        }
                         Divider()
-                        Label("Writable", systemImage: "pencil")
-                            .symbolVariant(
-                                media.fileMetadata?.isWritable ?? false ? .none : .slash
+                        if let isWritable = media.fileMetadata?.isWritable {
+                            Label(
+                                isWritable
+                                ? "MediaDetailView.media.isWritable"
+                                : "MediaDetailView.media.isNotWritable",
+                                systemImage: "pencil"
                             )
+                            .symbolVariant(isWritable ? .none : .slash)
+                        }
                     }
                 } header: {
-                    Text("File Metadata")
+                    Text("MediaDetailView.FileMetadata.title")
                 }
-                
+
                 Section {
-                    Text("Empty")
+                    Text("MediaDetailView.AVMetadata.noMetadataWarning")
+                    Label("MediaDetailView.AVMetadata.isOptimized", systemImage: "network")
+                    Label("MediaDetailView.AVMetadata.dimensions", systemImage: "aspectratio")
+                    Label("MediaDetailView.AVMetadata.bitrate", systemImage: "circle.bottomrighthalf.pattern.checkered")
                 } header: {
-                    
-                    Text("AV Metadata")
+                    Text("MediaDetailView.AVMetadata.title")
                 }
             }
         } else {
-            Text("Select an item")
+            Text("MediaDetailView.noSelection.text")
         }
     }
 }
