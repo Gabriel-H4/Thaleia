@@ -44,7 +44,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Needed to access local Plex and Seerr Servers"
+            "value" : "Thaleia needs access to the Local Network to access servers such as Plex and Seerr."
           }
         }
       }
