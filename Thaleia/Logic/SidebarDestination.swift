@@ -7,7 +7,6 @@
 
 enum SidebarDestination: CaseIterable, Hashable, Identifiable {
     
-    case home
     case local
     case seerr
     
@@ -15,8 +14,6 @@ enum SidebarDestination: CaseIterable, Hashable, Identifiable {
     
     var title: String {
         switch self {
-            case .home:
-                String(localized: "SidebarDestination.home.title")
             case .local:
                 String(localized: "SidebarDestination.local.title")
             case .seerr:

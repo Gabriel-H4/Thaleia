@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainContentView: View {
     
-    @State private var selectedSidebarTabItem: SidebarDestination = .home
+    @State private var selectedSidebarTabItem: SidebarDestination = .local
     @State private var selectedMediaItem: Media? = nil
     
     var body: some View {
@@ -22,8 +22,6 @@ struct MainContentView: View {
             }
         } content: {
             switch selectedSidebarTabItem {
-                case .home:
-                    Text("MainContentView.home.text")
                 case .local:
                     LocalMediaContentView(selectedMediaItem: $selectedMediaItem)
                 case .seerr:

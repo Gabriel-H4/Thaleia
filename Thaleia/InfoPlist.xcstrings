@@ -20,7 +20,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Thaleia"
+            "value" : "Thaleia: Check Media Quality"
           }
         }
       }
@@ -44,7 +44,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Thaleia needs access to the Local Network to access servers such as Plex and Seerr."
+            "value" : "Thaleia only needs access to the Local Network to access your Seerr server."
           }
         }
       }
