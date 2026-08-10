@@ -8,19 +8,21 @@
 import SwiftUI
 
 struct LocalMediaContentView: View {
-    
+
     @Binding var selectedMediaItem: Media?
-    
+
     @State private var isShowingFilePicker: Bool = false
     @State private var localPath: URL? = nil
     @State private var discoveredMedia: [Media] = []
-    
+
     var body: some View {
         ScrollView {
             if localPath != nil {
-                MediaCardGridView(media: $discoveredMedia, selectedMediaItem: $selectedMediaItem)
-            }
-            else {
+                MediaCardGridView(
+                    media: $discoveredMedia,
+                    selectedMediaItem: $selectedMediaItem
+                )
+            } else {
                 Button("LocalMediaContentView.filePickerButton.title") {
                     self.isShowingFilePicker = true
                 }
@@ -37,7 +39,10 @@ struct LocalMediaContentView: View {
                     }
                     self.isShowingFilePicker = true
                 } label: {
-                    Label("LocalMediaContentView.filePickerButton.title", systemImage: "folder.badge.plus")
+                    Label(
+                        "LocalMediaContentView.filePickerButton.title",
+                        systemImage: "folder.badge.plus"
+                    )
                 }
             }
             ToolbarItem(placement: .secondaryAction) {
@@ -47,7 +52,10 @@ struct LocalMediaContentView: View {
                         discoveredMedia = Media.create(from: pathURL)
                     }
                 } label: {
-                    Label("LocalMediaContentView.refreshButton.title", systemImage: "arrow.clockwise")
+                    Label(
+                        "LocalMediaContentView.refreshButton.title",
+                        systemImage: "arrow.clockwise"
+                    )
                 }
                 .disabled(localPath == nil)
             }
@@ -55,7 +63,10 @@ struct LocalMediaContentView: View {
                 Button {
                     print("Filter button clicked")
                 } label: {
-                    Label("LocalMediaContentView.filterButton.title", systemImage: "line.3.horizontal.decrease.circle")
+                    Label(
+                        "LocalMediaContentView.filterButton.title",
+                        systemImage: "line.3.horizontal.decrease.circle"
+                    )
                 }
                 .disabled(localPath == nil)
             }
@@ -63,18 +74,26 @@ struct LocalMediaContentView: View {
         .fileImporter(
             isPresented: $isShowingFilePicker,
             allowedContentTypes: [.directory, .folder],
-            allowsMultipleSelection: false) { result in
-                switch result {
-                    case .success(let files):
-                        if let firstPath = files.first {
-                            localPath = firstPath
-                            discoveredMedia = Media.create(from: firstPath)
-                        }
-                    case .failure(let failure):
-                        print("LocalMediaContentView.FileImporter Failure - \(failure.localizedDescription)")
+            allowsMultipleSelection: false
+        ) { result in
+            switch result {
+            case .success(let files):
+                if let firstPath = files.first {
+                    localPath = firstPath
+                    discoveredMedia = Media.create(from: firstPath)
                 }
-            } onCancellation: {
-                print("LocalMediaContentView.FileImporter - User Cancelled.")
+            case .failure(let failure):
+                print(
+                    "LocalMediaContentView.FileImporter Failure - \(failure.localizedDescription)"
+                )
             }
+        } onCancellation: {
+            print("LocalMediaContentView.FileImporter - User Cancelled.")
+        }
+        .onDisappear {
+            if let path = localPath {
+                path.stopAccessingSecurityScopedResource()
+            }
+        }
     }
 }

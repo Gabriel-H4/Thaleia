@@ -6,8 +6,12 @@
 //
 
 import Foundation
+import OSLog
 
-struct FileMetadata: Codable {
+struct FileMetadata: Codable, EventLoggable {
+
+    static let logger: Logger = Logger(category: "FileMetadata")
+
     private(set) var localizedName: String
     private(set) var contentType: String
     private(set) var byteSize: Int
@@ -30,12 +34,14 @@ struct FileMetadata: Codable {
 
     init?(at path: URL) {
 
-//        guard path.startAccessingSecurityScopedResource() else {
-//            print(
-//                "FileMetadata.init?(at:): Request to access \(path.absoluteString) failed"
-//            )
-//            return nil
-//        }
+        //        guard path.startAccessingSecurityScopedResource() else {
+        //            FileMetadata.logger.error("Request to access \(path.absoluteString) failed")
+        //            return nil
+        //        }
+
+        FileMetadata.logger.trace(
+            "\(#function, privacy: .public): Creating new FileMetadata for \(path.path)"
+        )
 
         let resourceKeys: Set<URLResourceKey> = [
             .contentTypeKey,
@@ -45,7 +51,7 @@ struct FileMetadata: Codable {
             .isWritableKey,
             .localizedNameKey,
         ]
-        
+
         guard
             let resourceValues = try? path.resourceValues(
                 forKeys: resourceKeys
@@ -57,8 +63,8 @@ struct FileMetadata: Codable {
             let isWritable = resourceValues.isWritable,
             let localizedName = resourceValues.localizedName
         else {
-            print(
-                "FileMetadata.init?(at:): One of the resourceValues was nil. Skipping \(path.absoluteString)"
+            FileMetadata.logger.error(
+                "One or more resourceValues were nil. Returning nil."
             )
             path.stopAccessingSecurityScopedResource()
             return nil
@@ -66,13 +72,16 @@ struct FileMetadata: Codable {
 
         guard isDirectory else {
             self.localizedName = localizedName
-            self.contentType = contentType.localizedDescription ?? contentType.identifier
+            self.contentType =
+                contentType.localizedDescription ?? contentType.identifier
             self.byteSize = fileSize
             self.isReadable = isReadable
             self.isWritable = isWritable
             return
         }
-        
+
+        FileMetadata.logger.trace("Exiting FileMetadata init()")
+
         path.stopAccessingSecurityScopedResource()
         return nil
     }

@@ -6,18 +6,18 @@
 //
 
 enum SidebarDestination: CaseIterable, Hashable, Identifiable {
-    
+
     case local
     case seerr
-    
+
     var id: Self { self }
-    
+
     var title: String {
         switch self {
-            case .local:
-                String(localized: "SidebarDestination.local.title")
-            case .seerr:
-                String(localized: "SidebarDestination.seerr.title")
+        case .local:
+            String(localized: "SidebarDestination.local.title")
+        case .seerr:
+            String(localized: "SidebarDestination.seerr.title")
         }
     }
 }

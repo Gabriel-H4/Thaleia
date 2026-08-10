@@ -24,7 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5B091E7A2D98A46C00C913BB /* Thaleia - Check Media Quality.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Thaleia - Check Media Quality.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B091E7A2D98A46C00C913BB /* Thaleia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thaleia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B091E8B2D98A46E00C913BB /* ThaleiaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThaleiaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B091E952D98A46E00C913BB /* ThaleiaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThaleiaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BEC920130087CD500240404 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -94,7 +94,7 @@
 		5B091E7B2D98A46C00C913BB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5B091E7A2D98A46C00C913BB /* Thaleia - Check Media Quality.app */,
+				5B091E7A2D98A46C00C913BB /* Thaleia.app */,
 				5B091E8B2D98A46E00C913BB /* ThaleiaTests.xctest */,
 				5B091E952D98A46E00C913BB /* ThaleiaUITests.xctest */,
 			);
@@ -131,7 +131,7 @@
 			packageProductDependencies = (
 			);
 			productName = Thaleia;
-			productReference = 5B091E7A2D98A46C00C913BB /* Thaleia - Check Media Quality.app */;
+			productReference = 5B091E7A2D98A46C00C913BB /* Thaleia.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5B091E8A2D98A46E00C913BB /* ThaleiaTests */ = {
@@ -424,7 +424,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = MY7692F7R6;
 				ENABLE_APP_SANDBOX = YES;
@@ -447,13 +447,14 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Thaleia/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Thaleia;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Gabriel Hassebrock. All rights reserved.";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Thaleia only needs access to the Local Network to access your Seerr server.";
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielhassebrock.Thaleia;
-				PRODUCT_NAME = "Thaleia - Check Media Quality";
+				PRODUCT_NAME = Thaleia;
 				REGISTER_APP_GROUPS = YES;
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;
@@ -479,7 +480,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = MY7692F7R6;
 				ENABLE_APP_SANDBOX = YES;
@@ -502,13 +503,14 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Thaleia/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Thaleia;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Gabriel Hassebrock. All rights reserved.";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Thaleia only needs access to the Local Network to access your Seerr server.";
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielhassebrock.Thaleia;
-				PRODUCT_NAME = "Thaleia - Check Media Quality";
+				PRODUCT_NAME = Thaleia;
 				REGISTER_APP_GROUPS = YES;
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;

@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct MainContentView: View {
-    
+
     @State private var selectedSidebarTabItem: SidebarDestination = .local
     @State private var selectedMediaItem: Media? = nil
-    
+
     var body: some View {
         NavigationSplitView {
             List(
@@ -22,10 +22,10 @@ struct MainContentView: View {
             }
         } content: {
             switch selectedSidebarTabItem {
-                case .local:
-                    LocalMediaContentView(selectedMediaItem: $selectedMediaItem)
-                case .seerr:
-                    Text("MainContentView.seerr.text")
+            case .local:
+                LocalMediaContentView(selectedMediaItem: $selectedMediaItem)
+            case .seerr:
+                Text("MainContentView.seerr.text")
             }
         } detail: {
             MediaDetailView(media: $selectedMediaItem)

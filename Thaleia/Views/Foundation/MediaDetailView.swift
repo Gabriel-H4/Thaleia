@@ -51,8 +51,8 @@ struct MediaDetailView: View {
                         if let isWritable = media.fileMetadata?.isWritable {
                             Label(
                                 isWritable
-                                ? "MediaDetailView.media.isWritable"
-                                : "MediaDetailView.media.isNotWritable",
+                                    ? "MediaDetailView.media.isWritable"
+                                    : "MediaDetailView.media.isNotWritable",
                                 systemImage: "pencil"
                             )
                             .symbolVariant(isWritable ? .none : .slash)
@@ -64,9 +64,28 @@ struct MediaDetailView: View {
 
                 Section {
                     Text("MediaDetailView.AVMetadata.noMetadataWarning")
-                    Label("MediaDetailView.AVMetadata.isOptimized", systemImage: "network")
-                    Label("MediaDetailView.AVMetadata.dimensions", systemImage: "aspectratio")
-                    Label("MediaDetailView.AVMetadata.bitrate", systemImage: "circle.bottomrighthalf.pattern.checkered")
+                    Button {
+                        Task {
+                            await AVMetadata.loadMetadata(at: media.url)
+                        }
+                    } label: {
+                        Label(
+                            "MediaDetailView.AVMetadata.load",
+                            systemImage: "info.circle"
+                        )
+                    }
+                    Label(
+                        "MediaDetailView.AVMetadata.isOptimized",
+                        systemImage: "network"
+                    )
+                    Label(
+                        "MediaDetailView.AVMetadata.dimensions",
+                        systemImage: "aspectratio"
+                    )
+                    Label(
+                        "MediaDetailView.AVMetadata.bitrate",
+                        systemImage: "circle.bottomrighthalf.pattern.checkered"
+                    )
                 } header: {
                     Text("MediaDetailView.AVMetadata.title")
                 }

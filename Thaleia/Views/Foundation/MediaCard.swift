@@ -21,7 +21,10 @@ struct MediaCard: View {
                 maxHeight: .infinity,
                 alignment: .center
             )
-            .background(.secondary, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .background(
+                .secondary,
+                in: RoundedRectangle(cornerRadius: 16, style: .continuous)
+            )
             .aspectRatio(9 / 16, contentMode: .fit)
             .padding()
     }
