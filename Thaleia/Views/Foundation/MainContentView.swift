@@ -8,29 +8,41 @@
 import SwiftUI
 
 struct MainContentView: View {
-
-    @State private var selectedSidebarTabItem: SidebarDestination = .local
+    
+    @State private var selectedSidebarItem: SidebarItem =
+    SidebarCategory.main.items.first ?? SidebarItem.localAnalyze
     @State private var selectedMediaItem: Media? = nil
 
     var body: some View {
         NavigationSplitView {
             List(
-                SidebarDestination.allCases,
-                selection: $selectedSidebarTabItem,
-            ) { sidebarTabItem in
-                NavigationLink(sidebarTabItem.title, value: sidebarTabItem)
+                selection: $selectedSidebarItem,
+            ) {
+                ForEach(SidebarCategory.allCases) { category in
+                    Section(category.title) {
+                        ForEach(category.items) { item in
+                            NavigationLink(value: item) {
+                                Label(item.title, systemImage: item.icon)
+                            }
+                        }
+                    }
+                }
             }
         } content: {
-            switch selectedSidebarTabItem {
-            case .local:
-                LocalMediaContentView(selectedMediaItem: $selectedMediaItem)
-            case .seerr:
-                Text("MainContentView.seerr.text")
+            switch selectedSidebarItem {
+                case .localAnalyze:
+                    LocalMediaContentView(
+                        selectedMediaItem: $selectedMediaItem
+                    )
+                case .seerrIssues:
+                    Text("Seerr Issues")
+                case .seeerrRequests:
+                    Text("Seerr Requests")
             }
         } detail: {
             MediaDetailView(media: $selectedMediaItem)
         }
-        .onChange(of: selectedSidebarTabItem) {
+        .onChange(of: selectedSidebarItem) {
             selectedMediaItem = nil
         }
     }
