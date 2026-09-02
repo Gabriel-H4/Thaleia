@@ -47,10 +47,10 @@ struct LocalMediaContentView: View {
             }
             ToolbarItem(placement: .secondaryAction) {
                 Button {
-                    if let pathURL = localPath {
-                        selectedMediaItem = nil
-                        discoveredMedia = Media.create(from: pathURL)
-                    }
+                        if let pathURL = localPath {
+                            selectedMediaItem = nil
+                            discoveredMedia = Media.create(from: pathURL)
+                        }
                 } label: {
                     Label(
                         "LocalMediaContentView.refreshButton.title",
@@ -96,4 +96,10 @@ struct LocalMediaContentView: View {
             }
         }
     }
+}
+
+#Preview {
+    LocalMediaContentView(
+        selectedMediaItem: Binding.constant(nil)
+    )
 }

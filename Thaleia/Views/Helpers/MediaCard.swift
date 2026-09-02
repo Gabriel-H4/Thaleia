@@ -12,7 +12,7 @@ struct MediaCard: View {
     @State var media: Media
 
     var body: some View {
-        Text(media.fileMetadata?.localizedName ?? media.url.absoluteString)
+        Text(media.fileLocalizedName ?? media.fileURL.absoluteString)
             .padding()
             .frame(
                 minWidth: 0,
