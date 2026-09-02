@@ -1,31 +1,73 @@
-//
-//  Media.swift
-//  Thaleia
-//
-//  Created by Gabriel Hassebrock on 7/15/26.
-//
+    //
+    //  Media.swift
+    //  Thaleia
+    //
+    //  Created by Gabriel Hassebrock on 7/15/26.
+    //
 
+import AVFoundation
 import Foundation
 import OSLog
 
-struct Media: EventLoggable, Identifiable {
+struct Media: Equatable, EventLoggable, Identifiable {
 
     static let logger: Logger = Logger(category: "Media")
 
     let id: UUID
-    let url: URL
+    let fileURL: URL
 
-    var fileMetadata: FileMetadata? {
-        FileMetadata(at: url)
-    }
-
-    var avMetadata: AVMetadata? {
-        AVMetadata()
-    }
+    let fileLocalizedName: String?
+    let fileContentType: String?
+    let fileByteSize: Int?
+    let filePermissions: [FilePermission]
+    
+    let underlyingAsset: AVAsset
 
     init(at path: URL) {
         self.id = UUID()
-        self.url = path
+        self.fileURL = path
+        self.underlyingAsset = AVURLAsset(url: path)
+        
+        var fileLocalizedName: String? = nil
+        var fileContentType: String? = nil
+        var fileByteSize: Int? = nil
+        var filePermissions: [FilePermission] = FilePermission.create()
+
+        let resourceKeys: Set<URLResourceKey> = [
+            .contentTypeKey,
+            .fileSizeKey,
+            .isDirectoryKey,
+            .isExecutableKey,
+            .isReadableKey,
+            .isWritableKey,
+            .localizedNameKey,
+        ]
+
+        if let resourceValues = try? path.resourceValues(forKeys: resourceKeys),
+           let isDirectory = resourceValues.isDirectory
+        {
+            if !isDirectory {
+                fileLocalizedName = resourceValues.localizedName
+                fileContentType =
+                resourceValues.contentType?.localizedDescription
+                ?? resourceValues.contentType?.identifier
+                fileByteSize = resourceValues.fileSize
+                filePermissions.removeAll()
+                filePermissions = FilePermission
+                    .create(
+                        readable: resourceValues.isReadable ?? false,
+                        writable: resourceValues.isWritable ?? false,
+                        executable: resourceValues.isExecutable ?? false
+                    )
+            }
+        }
+        
+        self.fileLocalizedName = fileLocalizedName
+        self.fileContentType = fileContentType
+        self.fileByteSize = fileByteSize
+        self.filePermissions = filePermissions
+        
+        path.stopAccessingSecurityScopedResource()
     }
 }
 

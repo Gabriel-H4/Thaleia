@@ -5,25 +5,45 @@
 //  Created by Gabriel Hassebrock on 8/2/26.
 //
 
+import AVFoundation
 import SwiftUI
 
 struct MediaDetailView: View {
 
     @Binding var media: Media?
+    @State private var tracks: [AVAssetTrack] = []
+    private var status: String {
+        if let media = media {
+            switch media.underlyingAsset.status(of: .tracks) {
+                case .loading:
+                    return "Loading"
+                case .loaded:
+                    return "Loaded"
+                case .notYetLoaded:
+                    return "Not yet loaded"
+                case .failed(_):
+                    return "Failed :("
+            }
+        }
+        return "Bad media..."
+    }
 
     var body: some View {
         if let media = media {
             List {
+                Text(
+                    media.fileLocalizedName
+                    ?? "MediaDetailView.media.noLocalizedName"
+                )
+                .font(.title)
+                Text(status)
+                    .bold()
+                
                 Section {
-                    Text(
-                        media.fileMetadata?.localizedName
-                            ?? "MediaDetailView.media.noLocalizedName"
-                    )
-                    .font(.title)
-                    Label(media.id.uuidString, systemImage: "tag")
-                    Label(media.url.absoluteString, systemImage: "link")
+                    Label(media.id.uuidString, systemImage: "person.text.rectangle")
+                    Label(media.fileURL.absoluteString, systemImage: "folder")
                     Label(
-                        media.fileMetadata?.contentType
+                        media.fileContentType
                             ?? "MediaDetailView.media.noContentType",
                         systemImage: "document"
                     )
@@ -31,67 +51,95 @@ struct MediaDetailView: View {
                         ByteCountFormatter
                             .string(
                                 fromByteCount: Int64(
-                                    media.fileMetadata?.byteSize ?? 0
+                                    media.fileByteSize ?? 0
                                 ),
                                 countStyle: .file
                             ),
                         systemImage: "externaldrive"
                     )
                     HStack {
-                        if let isReadable = media.fileMetadata?.isReadable {
-                            Label(
-                                isReadable
-                                    ? "MediaDetailView.media.isReadable"
-                                    : "MediaDetailView.media.isNotReadable",
-                                systemImage: "eye"
-                            )
-                            .symbolVariant(isReadable ? .none : .slash)
-                        }
-                        Divider()
-                        if let isWritable = media.fileMetadata?.isWritable {
-                            Label(
-                                isWritable
-                                    ? "MediaDetailView.media.isWritable"
-                                    : "MediaDetailView.media.isNotWritable",
-                                systemImage: "pencil"
-                            )
-                            .symbolVariant(isWritable ? .none : .slash)
+                        ForEach(media.filePermissions) { permission in
+                            Label(permission.label, systemImage: permission.icon)
+                                .symbolVariant(permission.iconVariant)
+                            if media.filePermissions.firstIndex(of: permission) ?? 0 < media.filePermissions.count - 1 {
+                                Divider()
+                            }
                         }
                     }
                 } header: {
                     Text("MediaDetailView.FileMetadata.title")
                 }
 
+//                Section {
+//                    Text("MediaDetailView.AVMetadata.noMetadataWarning")
+//                    Button {
+//                        Task {
+//                            await AVMetadata.loadMetadata(at: media.fileURL)
+//                        }
+//                    } label: {
+//                        Label(
+//                            "MediaDetailView.AVMetadata.load",
+//                            systemImage: "info.circle"
+//                        )
+//                    }
+//                    Label(
+//                        "MediaDetailView.AVMetadata.isOptimized",
+//                        systemImage: "network"
+//                    )
+//                    Label(
+//                        "MediaDetailView.AVMetadata.dimensions",
+//                        systemImage: "aspectratio"
+//                    )
+//                    Label(
+//                        "MediaDetailView.AVMetadata.bitrate",
+//                        systemImage: "circle.bottomrighthalf.pattern.checkered"
+//                    )
+//                    Label(
+//                        media.avMetadata?.releaseDate.description ?? "Date",
+//                        systemImage: "calendar"
+//                    )
+//                    Label("Title: nil", systemImage: "person")
+//                } header: {
+//                    Text("MediaDetailView.AVMetadata.title")
+//                }
+                
                 Section {
-                    Text("MediaDetailView.AVMetadata.noMetadataWarning")
-                    Button {
-                        Task {
-                            await AVMetadata.loadMetadata(at: media.url)
-                        }
-                    } label: {
-                        Label(
-                            "MediaDetailView.AVMetadata.load",
-                            systemImage: "info.circle"
-                        )
+                    ForEach(tracks, id: \.self) { track in
+                        Label(track.mediaType.rawValue, systemImage: "film")
                     }
-                    Label(
-                        "MediaDetailView.AVMetadata.isOptimized",
-                        systemImage: "network"
-                    )
-                    Label(
-                        "MediaDetailView.AVMetadata.dimensions",
-                        systemImage: "aspectratio"
-                    )
-                    Label(
-                        "MediaDetailView.AVMetadata.bitrate",
-                        systemImage: "circle.bottomrighthalf.pattern.checkered"
-                    )
                 } header: {
-                    Text("MediaDetailView.AVMetadata.title")
+                    Text("MediaDetailView.Tracks.title")
                 }
+            }
+            .onAppear {
+                refreshTracks()
+            }
+            .onChange(of: media) {
+                refreshTracks()
             }
         } else {
             Text("MediaDetailView.noSelection.text")
         }
     }
+    
+    private func refreshTracks() {
+        if let media = media {
+            tracks = []
+            Task {
+                tracks = try (
+                    await media.underlyingAsset.load(.tracks)
+                )
+                print("Updated Tracks, now: \(tracks.debugDescription)")
+            }
+        } else {
+            print("Binding<Media> was nil for refreshTracks()")
+        }
+    }
+}
+
+#Preview {
+    let media = Media(
+        at: URL(string: "file:///Users/demo/file/100.mp4")!,
+    )
+    MediaDetailView(media: Binding.constant(media))
 }
