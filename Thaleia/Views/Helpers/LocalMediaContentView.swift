@@ -80,7 +80,8 @@ struct LocalMediaContentView: View {
             case .success(let files):
                 if let firstPath = files.first {
                     localPath = firstPath
-                    discoveredMedia = Media.create(from: firstPath)
+                    discoveredMedia = Media
+                        .create(from: firstPath.standardizedFileURL)
                 }
             case .failure(let failure):
                 print(

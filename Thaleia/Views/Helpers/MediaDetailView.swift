@@ -43,7 +43,14 @@ struct MediaDetailView: View {
                 
                 Section {
                     Label(media.id.uuidString, systemImage: "person.text.rectangle")
-                    Label(media.fileURL.absoluteString, systemImage: "folder")
+                    Label(media.fileURL.formatted(.url), systemImage: "folder")
+                        .contextMenu {
+                            Button {
+                                NSWorkspace.shared.activateFileViewerSelecting([media.fileURL])
+                            } label: {
+                                Label("Open in Finder", systemImage: "finder")
+                            }
+                        }
                     Label(
                         media.fileContentType
                             ?? "MediaDetailView.media.noContentType",
