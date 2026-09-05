@@ -11,21 +11,23 @@ import SwiftUI
 struct MediaDetailView: View {
 
     @Binding var media: Media?
-    @State private var tracks: [AVAssetTrack] = []
+    
+    @State private var tracks: [Track] = []
+    
     private var status: String {
         if let media = media {
             switch media.underlyingAsset.status(of: .tracks) {
                 case .loading:
-                    return "Loading"
+                    return String(localized: "MediaDetailView.status.loading")
                 case .loaded:
-                    return "Loaded"
+                    return String(localized: "MediaDetailView.status.loaded")
                 case .notYetLoaded:
-                    return "Not yet loaded"
+                    return String(localized: "MediaDetailView.status.notYetLoaded")
                 case .failed(_):
-                    return "Failed :("
+                    return String(localized: "MediaDetailView.status.failed")
             }
         }
-        return "Bad media..."
+        return String(localized: "MediaDetailView.status.nilMedia")
     }
 
     var body: some View {
@@ -69,46 +71,32 @@ struct MediaDetailView: View {
                 } header: {
                     Text("MediaDetailView.FileMetadata.title")
                 }
-
-//                Section {
-//                    Text("MediaDetailView.AVMetadata.noMetadataWarning")
-//                    Button {
-//                        Task {
-//                            await AVMetadata.loadMetadata(at: media.fileURL)
-//                        }
-//                    } label: {
-//                        Label(
-//                            "MediaDetailView.AVMetadata.load",
-//                            systemImage: "info.circle"
-//                        )
-//                    }
-//                    Label(
-//                        "MediaDetailView.AVMetadata.isOptimized",
-//                        systemImage: "network"
-//                    )
-//                    Label(
-//                        "MediaDetailView.AVMetadata.dimensions",
-//                        systemImage: "aspectratio"
-//                    )
-//                    Label(
-//                        "MediaDetailView.AVMetadata.bitrate",
-//                        systemImage: "circle.bottomrighthalf.pattern.checkered"
-//                    )
-//                    Label(
-//                        media.avMetadata?.releaseDate.description ?? "Date",
-//                        systemImage: "calendar"
-//                    )
-//                    Label("Title: nil", systemImage: "person")
-//                } header: {
-//                    Text("MediaDetailView.AVMetadata.title")
-//                }
                 
-                Section {
-                    ForEach(tracks, id: \.self) { track in
-                        Label(track.mediaType.rawValue, systemImage: "film")
+                if !tracks.isEmpty {
+                    Section {
+                        Text("MediaDetailView.Tracks.noMetadataWarning")
+                        ForEach(tracks) { track in
+                            DisclosureGroup {
+                                Label(
+                                    "MediaDetailView.Track.isOptimized",
+                                    systemImage: "network"
+                                )
+                                Label(
+                                    "MediaDetailView.Track.dimensions",
+                                    systemImage: "aspectratio"
+                                )
+                                Label(
+                                    "MediaDetailView.Track.bitrate",
+                                    systemImage: "circle.bottomrighthalf.pattern.checkered"
+                                )
+                            } label: {
+                                Label(track.text, systemImage: track.icon)
+                            }
+
+                        }
+                    } header: {
+                        Text("MediaDetailView.Tracks.title")
                     }
-                } header: {
-                    Text("MediaDetailView.Tracks.title")
                 }
             }
             .onAppear {
@@ -117,19 +105,28 @@ struct MediaDetailView: View {
             .onChange(of: media) {
                 refreshTracks()
             }
+            .toolbar {
+                ToolbarItem {
+                    Button {
+                        refreshTracks()
+                    } label: {
+                        Label("Refresh", systemImage: "arrow.clockwise.circle.fill")
+                    }
+                }
+            }
         } else {
             Text("MediaDetailView.noSelection.text")
         }
     }
     
     private func refreshTracks() {
-        if let media = media {
-            tracks = []
+        if let media = self.media {
+            self.tracks = []
             Task {
-                tracks = try (
+                let tracks = try (
                     await media.underlyingAsset.load(.tracks)
                 )
-                print("Updated Tracks, now: \(tracks.debugDescription)")
+                self.tracks = Track.create(from: tracks)
             }
         } else {
             print("Binding<Media> was nil for refreshTracks()")

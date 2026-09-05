@@ -10,12 +10,16 @@ import SwiftUI
 
 @main
 struct ThaleiaApp: App {
+    
+    @State private var dataModel: DataModel = DataModel()
+    
     var body: some Scene {
         WindowGroup {
             MainContentView()
                 .containerShape(
                     RoundedRectangle(cornerRadius: 30, style: .continuous)
                 )
+                .environment(dataModel)
         }
     }
 }
