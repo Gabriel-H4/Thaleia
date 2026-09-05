@@ -34,7 +34,10 @@
 		5B091EB22D98B6AD00C913BB /* Exceptions for "Thaleia" folder in "Thaleia" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"Example Data/status-overseerr.json",
+				"Example Data/status-plex.json",
 				Info.plist,
+				Localizable_Old.xcstrings,
 			);
 			target = 5B091E792D98A46C00C913BB /* Thaleia */;
 		};
