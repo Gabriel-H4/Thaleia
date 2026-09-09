@@ -65,7 +65,7 @@ struct Track: Hashable, Identifiable {
             case .video:
                 "Video"
             default:
-                "Unsupported Type"
+                "Unsupported Type: \(track.mediaType.rawValue)"
         }
     }
     
