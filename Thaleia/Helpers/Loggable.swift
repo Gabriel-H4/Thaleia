@@ -1,5 +1,5 @@
 //
-//  EventLoggable.swift
+//  Loggable.swift
 //  Thaleia
 //
 //  Created by Gabriel Hassebrock on 8/4/26.
@@ -7,7 +7,7 @@
 
 import OSLog
 
-protocol EventLoggable {
+protocol Loggable {
     static var logger: Logger { get }
 }
 

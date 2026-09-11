@@ -8,39 +8,39 @@
 import Foundation
 import SwiftUI
 
-enum FilePermission: Hashable, Identifiable {
+enum FilePermission: Hashable, Identifiable, LabelRepresentable {
 
     case readable(value: Bool), writable(value: Bool), executable(value: Bool)
     
     var id: Self { self }
     
-    var label: LocalizedStringResource {
+    var title: LocalizedStringResource {
         switch self {
             case .readable(let value):
                 if value {
-                    "FilePermission.readable.true.label"
+                    "FilePermission.readable.true.title"
                 }
                 else {
-                    "FilePermission.readable.false.label"
+                    "FilePermission.readable.false.title"
                 }
             case .writable(let value):
                 if value {
-                    "FilePermission.writable.true.label"
+                    "FilePermission.writable.true.title"
                 }
                 else {
-                    "FilePermission.writable.false.label"
+                    "FilePermission.writable.false.title"
                 }
             case .executable(let value):
                 if value {
-                    "FilePermission.executable.true.label"
+                    "FilePermission.executable.true.title"
                 }
                 else {
-                    "FilePermission.executable.false.label"
+                    "FilePermission.executable.false.title"
                 }
         }
     }
     
-    var icon: String {
+    var icon: SFSymbol {
         switch self {
             case .readable:
                 "eye"

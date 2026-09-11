@@ -9,7 +9,7 @@ import AVFoundation
 import OSLog
 
 @available(macOS, obsoleted: 0.0.1, message: "")
-struct AVMetadata: EventLoggable {
+struct AVMetadata: Loggable {
 
     static let logger: Logger = Logger(category: "AVMetadata")
 

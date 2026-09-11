@@ -7,32 +7,33 @@
 
 import Foundation
 
-enum SidebarItem: Hashable, Identifiable {
+enum SidebarItem: Identifiable, LabelRepresentable {
+
     case localAnalyze
     case seerrIssues
     case seeerrRequests
     
     var id: Self { self }
     
-    var title: String {
+    var title: LocalizedStringResource {
         switch self {
             case .localAnalyze:
-                String(localized: "SidebarItem.local.analyze.title")
+                "SidebarItem.local.analyze.title"
             case .seerrIssues:
-                String(localized: "SidebarItem.seerr.issues.title")
+                "SidebarItem.seerr.issues.title"
             case .seeerrRequests:
-                String(localized: "SidebarItem.seerr.requests.title")
+                "SidebarItem.seerr.requests.title"
         }
     }
     
-    var icon: String {
+    var icon: SFSymbol {
         switch self {
             case .localAnalyze:
-                String("photo.badge.magnifyingglass")
+                "photo.badge.magnifyingglass"
             case .seerrIssues:
-                String("exclamationmark.triangle")
+                "exclamationmark.triangle"
             case .seeerrRequests:
-                String("plus.magnifyingglass")
+                "plus.magnifyingglass"
         }
     }
 }

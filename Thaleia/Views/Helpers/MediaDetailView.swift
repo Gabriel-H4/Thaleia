@@ -42,7 +42,7 @@ struct MediaDetailView: View {
                     .bold()
                 
                 Section {
-                    Label(media.id.uuidString, systemImage: "person.text.rectangle")
+                    Label(media.id.uuidString, systemImage: "person.title.rectangle")
                     Label(media.fileURL.formatted(.url), systemImage: "folder")
                         .contextMenu {
                             Button {
@@ -68,7 +68,7 @@ struct MediaDetailView: View {
                     )
                     HStack {
                         ForEach(media.filePermissions) { permission in
-                            Label(permission.label, systemImage: permission.icon)
+                            Label(permission.title, systemImage: permission.icon)
                                 .symbolVariant(permission.iconVariant)
                             if media.filePermissions.firstIndex(of: permission) ?? 0 < media.filePermissions.count - 1 {
                                 Divider()
@@ -84,20 +84,56 @@ struct MediaDetailView: View {
                         Text("MediaDetailView.Tracks.noMetadataWarning")
                         ForEach(tracks) { track in
                             DisclosureGroup {
-                                Label(
-                                    "MediaDetailView.Track.isOptimized",
-                                    systemImage: "network"
-                                )
-                                Label(
-                                    "MediaDetailView.Track.dimensions",
-                                    systemImage: "aspectratio"
-                                )
-                                Label(
-                                    "MediaDetailView.Track.bitrate",
-                                    systemImage: "circle.bottomrighthalf.pattern.checkered"
-                                )
+                                    Toggle("MediaDetailView.Track.isEnabled", isOn: Binding.constant(track.isEnabled))
+                                        .toggleStyle(.checkbox)
+                                        //.disabled(true)
+                                    Label(
+                                        "MediaDetailView.Track.isOptimized",
+                                        systemImage: "network"
+                                    )
+
+                                if track.genericKind == .audio {
+                                    Section {
+                                        Text("Audio Info")
+                                        Label(
+                                            "MediaDetailView.Track.bitrate",
+                                            systemImage: "circle.bottomrighthalf.pattern.checkered"
+                                        )
+                                    }
+                                }
+                                
+                                if track.genericKind == .video {
+                                    Section {
+                                        if let dimensions = track.dimensions {
+                                            Label(dimensions.debugDescription,
+                                                systemImage: "aspectratio"
+                                            )
+                                        } else {
+                                            Label(
+                                                "MediaDetailView.Track.dimensions",
+                                                systemImage: "aspectratio"
+                                            )
+                                        }
+                                        Label(
+                                            "MediaDetailView.Track.bitrate",
+                                            systemImage: "circle.bottomrighthalf.pattern.checkered"
+                                        )
+                                    }
+                                }
+                                
+                                if track.genericKind == .text {
+                                    Section {
+                                        Text("Text Info")
+                                    }
+                                }
+                                
+                                if track.genericKind == .other {
+                                    Section {
+                                        Text("Other Info")
+                                    }
+                                }
                             } label: {
-                                Label(track.text, systemImage: track.icon)
+                                Label(track.title, systemImage: track.icon)
                             }
 
                         }
@@ -133,7 +169,7 @@ struct MediaDetailView: View {
                 let tracks = try (
                     await media.underlyingAsset.load(.tracks)
                 )
-                self.tracks = Track.create(from: tracks)
+                self.tracks = await Track.create(from: tracks)
             }
         } else {
             print("Binding<Media> was nil for refreshTracks()")

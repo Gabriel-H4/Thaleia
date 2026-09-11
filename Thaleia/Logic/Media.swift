@@ -9,7 +9,7 @@ import AVFoundation
 import Foundation
 import OSLog
 
-struct Media: Equatable, EventLoggable, Identifiable {
+struct Media: Equatable, Loggable, Identifiable {
 
     static let logger: Logger = Logger(category: "Media")
 

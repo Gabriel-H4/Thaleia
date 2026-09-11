@@ -8,71 +8,80 @@
 import AVFoundation
 import Foundation
 
-struct Track: Hashable, Identifiable {
+struct Track: Identifiable, LabelRepresentable {
     
     let id: UUID = UUID()
     let underlyingAsset: AVAssetTrack
-    let icon: String
-    let text: String
+    let genericKind: TrackGenericKind
+    let title: LocalizedStringResource
+    let icon: SFSymbol
+    let isEnabled: Bool
+    let dimensions: CGSize?
+    //let bitrate: Int?
     
-    init(from track: AVAssetTrack) {
+    init(from track: AVAssetTrack) async {
         self.underlyingAsset = track
-        self.icon = switch track.mediaType {
+        switch track.mediaType {
             case .audio:
-                "waveform"
+                self.genericKind = .audio
+                self.icon = "waveform"
+                self.title = "Audio"
             case .auxiliaryPicture:
-                "photo"
-            case .closedCaption, .subtitle:
-                "captions.bubble"
-            case .depthData:
-                "arrow.up.arrow.down"
-            case .haptic:
-                "water.waves"
-            case .metadata:
-                "info.bubble"
-            case .muxed:
-                "arrow.trianglehead.merge"
-            case .text:
-                "quote.bubble"
-            case .timecode:
-                "clock"
-            case .video:
-                "film"
-            default:
-                "questionmark"
-        }
-        self.text = switch track.mediaType {
-            case .audio:
-                "Audio"
-            case .auxiliaryPicture:
-                "Auxiliary Picture"
+                self.genericKind = .other
+                self.icon = "photo"
+                self.title = "Auxiliary Picture"
             case .closedCaption:
-                "Closed Caption"
+                self.genericKind = .text
+                self.icon = "captions.bubble"
+                self.title = "Closed Caption"
             case .subtitle:
-                "Subtitle"
+                self.genericKind = .text
+                self.icon = "captions.bubble"
+                self.title = "Subtitle"
             case .depthData:
-                "Depth"
+                self.genericKind = .other
+                self.icon = "arrow.up.arrow.down"
+                self.title = "Depth"
             case .haptic:
-                "Haptic"
+                self.genericKind = .other
+                self.icon = "water.waves"
+                self.title = "Haptic"
             case .metadata:
-                "Metadata"
+                self.genericKind = .other
+                self.icon = "info.bubble"
+                self.title = "Metadata"
             case .muxed:
-                "Muxed"
+                self.genericKind = .other
+                self.icon = "arrow.trianglehead.merge"
+                self.title = "Muxed"
             case .text:
-                "Text"
+                self.genericKind = .text
+                self.icon = "quote.bubble"
+                self.title = "Text"
             case .timecode:
-                "Timecode"
+                self.genericKind = .other
+                self.icon = "clock"
+                self.title = "Timecode"
             case .video:
-                "Video"
+                self.genericKind = .video
+                self.icon = "film"
+                self.title = "Video"
             default:
-                "Unsupported Type: \(track.mediaType.rawValue)"
+                self.genericKind = .other
+                self.icon = "questionmark"
+                self.title = "Unsupported Type: \(track.mediaType.rawValue)"
         }
+        
+        self.isEnabled = (try? await track.load(.isEnabled)) ?? false
+        
+        self.dimensions = (try? await track.load(.naturalSize))
+        
     }
     
-    static func create(from tracks: [AVAssetTrack]) -> [Track] {
+    static func create(from tracks: [AVAssetTrack]) async -> [Track] {
         var result: [Track] = []
         for track in tracks {
-            result.append(Track(from: track))
+            result.append(await Track(from: track))
         }
         return result
     }
