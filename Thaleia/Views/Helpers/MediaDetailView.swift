@@ -11,20 +11,20 @@ import SwiftUI
 struct MediaDetailView: View {
 
     @Binding var media: Media?
-    
+
     @State private var tracks: [Track] = []
-    
+
     private var status: String {
         if let media = media {
             switch media.underlyingAsset.status(of: .tracks) {
-                case .loading:
-                    return String(localized: "MediaDetailView.status.loading")
-                case .loaded:
-                    return String(localized: "MediaDetailView.status.loaded")
-                case .notYetLoaded:
-                    return String(localized: "MediaDetailView.status.notYetLoaded")
-                case .failed(_):
-                    return String(localized: "MediaDetailView.status.failed")
+            case .loading:
+                return String(localized: "MediaDetailView.status.loading")
+            case .loaded:
+                return String(localized: "MediaDetailView.status.loaded")
+            case .notYetLoaded:
+                return String(localized: "MediaDetailView.status.notYetLoaded")
+            case .failed(_):
+                return String(localized: "MediaDetailView.status.failed")
             }
         }
         return String(localized: "MediaDetailView.status.nilMedia")
@@ -35,18 +35,23 @@ struct MediaDetailView: View {
             List {
                 Text(
                     media.fileLocalizedName
-                    ?? "MediaDetailView.media.noLocalizedName"
+                        ?? "MediaDetailView.media.noLocalizedName"
                 )
                 .font(.title)
                 Text(status)
                     .bold()
-                
+
                 Section {
-                    Label(media.id.uuidString, systemImage: "person.title.rectangle")
+                    Label(
+                        media.id.uuidString,
+                        systemImage: "person.title.rectangle"
+                    )
                     Label(media.fileURL.formatted(.url), systemImage: "folder")
                         .contextMenu {
                             Button {
-                                NSWorkspace.shared.activateFileViewerSelecting([media.fileURL])
+                                NSWorkspace.shared.activateFileViewerSelecting([
+                                    media.fileURL
+                                ])
                             } label: {
                                 Label("Open in Finder", systemImage: "finder")
                             }
@@ -68,9 +73,14 @@ struct MediaDetailView: View {
                     )
                     HStack {
                         ForEach(media.filePermissions) { permission in
-                            Label(permission.title, systemImage: permission.icon)
-                                .symbolVariant(permission.iconVariant)
-                            if media.filePermissions.firstIndex(of: permission) ?? 0 < media.filePermissions.count - 1 {
+                            Label(
+                                permission.title,
+                                systemImage: permission.icon
+                            )
+                            .symbolVariant(permission.iconVariant)
+                            if media.filePermissions.firstIndex(of: permission)
+                                ?? 0 < media.filePermissions.count - 1
+                            {
                                 Divider()
                             }
                         }
@@ -78,34 +88,39 @@ struct MediaDetailView: View {
                 } header: {
                     Text("MediaDetailView.FileMetadata.title")
                 }
-                
+
                 if !tracks.isEmpty {
                     Section {
                         Text("MediaDetailView.Tracks.noMetadataWarning")
                         ForEach(tracks) { track in
                             DisclosureGroup {
-                                    Toggle("MediaDetailView.Track.isEnabled", isOn: Binding.constant(track.isEnabled))
-                                        .toggleStyle(.checkbox)
-                                        //.disabled(true)
-                                    Label(
-                                        "MediaDetailView.Track.isOptimized",
-                                        systemImage: "network"
-                                    )
+                                Toggle(
+                                    "MediaDetailView.Track.isEnabled",
+                                    isOn: Binding.constant(track.isEnabled)
+                                )
+                                .toggleStyle(.checkbox)
+                                //.disabled(true)
+                                Label(
+                                    "MediaDetailView.Track.isOptimized",
+                                    systemImage: "network"
+                                )
 
-                                if track.genericKind == .audio {
+                                if track.trackType.underlyingValue == .audio {
                                     Section {
                                         Text("Audio Info")
                                         Label(
                                             "MediaDetailView.Track.bitrate",
-                                            systemImage: "circle.bottomrighthalf.pattern.checkered"
+                                            systemImage:
+                                                "circle.bottomrighthalf.pattern.checkered"
                                         )
                                     }
                                 }
-                                
-                                if track.genericKind == .video {
+
+                                if track.trackType.underlyingValue == .video {
                                     Section {
                                         if let dimensions = track.dimensions {
-                                            Label(dimensions.debugDescription,
+                                            Label(
+                                                dimensions.debugDescription,
                                                 systemImage: "aspectratio"
                                             )
                                         } else {
@@ -116,24 +131,25 @@ struct MediaDetailView: View {
                                         }
                                         Label(
                                             "MediaDetailView.Track.bitrate",
-                                            systemImage: "circle.bottomrighthalf.pattern.checkered"
+                                            systemImage:
+                                                "circle.bottomrighthalf.pattern.checkered"
                                         )
                                     }
                                 }
-                                
-                                if track.genericKind == .text {
+
+                                if track.trackType.underlyingValue == .text {
                                     Section {
                                         Text("Text Info")
                                     }
                                 }
-                                
-                                if track.genericKind == .other {
+                                if !track.trackType.isSupported {
                                     Section {
                                         Text("Other Info")
                                     }
                                 }
+                                
                             } label: {
-                                Label(track.title, systemImage: track.icon)
+                                Label(track.trackType.title, systemImage: track.trackType.icon)
                             }
 
                         }
@@ -153,7 +169,10 @@ struct MediaDetailView: View {
                     Button {
                         refreshTracks()
                     } label: {
-                        Label("Refresh", systemImage: "arrow.clockwise.circle.fill")
+                        Label(
+                            "Refresh",
+                            systemImage: "arrow.clockwise.circle.fill"
+                        )
                     }
                 }
             }
@@ -161,14 +180,12 @@ struct MediaDetailView: View {
             Text("MediaDetailView.noSelection.text")
         }
     }
-    
+
     private func refreshTracks() {
         if let media = self.media {
             self.tracks = []
             Task {
-                let tracks = try (
-                    await media.underlyingAsset.load(.tracks)
-                )
+                let tracks = try (await media.underlyingAsset.load(.tracks))
                 self.tracks = await Track.create(from: tracks)
             }
         } else {
