@@ -44,7 +44,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Thaleia only needs access to the Local Network to access your Seerr server."
+            "value" : "Thaleia needs access to your Local Network to connect to your Seerr server."
           }
         }
       }

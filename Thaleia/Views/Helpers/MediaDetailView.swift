@@ -185,8 +185,9 @@ struct MediaDetailView: View {
         if let media = self.media {
             self.tracks = []
             Task {
-                let tracks = try (await media.underlyingAsset.load(.tracks))
-                self.tracks = await Track.create(from: tracks)
+                if let tracks = try? (await media.underlyingAsset.load(.tracks)) {
+                    self.tracks = await Track.create(from: tracks)
+                }
             }
         } else {
             print("Binding<Media> was nil for refreshTracks()")
