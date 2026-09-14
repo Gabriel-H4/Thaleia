@@ -6,8 +6,28 @@
 	<dict>
 		<key>Thaleia.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>5B091E792D98A46C00C913BB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5B091E8A2D98A46E00C913BB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5B091E942D98A46E00C913BB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
