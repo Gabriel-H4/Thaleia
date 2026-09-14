@@ -44,7 +44,7 @@ struct MediaDetailView: View {
                 Section {
                     Label(
                         media.id.uuidString,
-                        systemImage: "person.title.rectangle"
+                        systemImage: "person.text.rectangle"
                     )
                     Label(media.fileURL.formatted(.url), systemImage: "folder")
                         .contextMenu {
@@ -105,7 +105,7 @@ struct MediaDetailView: View {
                                     systemImage: "network"
                                 )
 
-                                if track.trackType.underlyingValue == .audio {
+                                if track.type == .audio {
                                     Section {
                                         Text("Audio Info")
                                         Label(
@@ -116,7 +116,7 @@ struct MediaDetailView: View {
                                     }
                                 }
 
-                                if track.trackType.underlyingValue == .video {
+                                if track.type == .video {
                                     Section {
                                         if let dimensions = track.dimensions {
                                             Label(
@@ -137,19 +137,19 @@ struct MediaDetailView: View {
                                     }
                                 }
 
-                                if track.trackType.underlyingValue == .text {
+                                if track.type == .text {
                                     Section {
                                         Text("Text Info")
                                     }
                                 }
-                                if !track.trackType.isSupported {
+                                if track.type.icon == "questionmark" {
                                     Section {
                                         Text("Other Info")
                                     }
                                 }
                                 
                             } label: {
-                                Label(track.trackType.title, systemImage: track.trackType.icon)
+                                Label(track.type.title, systemImage: track.type.icon)
                             }
 
                         }

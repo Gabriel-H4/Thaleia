@@ -12,14 +12,16 @@ struct Track: Identifiable {
     
     let id: UUID = UUID()
     let underlyingAsset: AVAssetTrack
-    let trackType: TrackType
     let isEnabled: Bool
     let dimensions: CGSize?
     //let bitrate: Int?
     
+    var type: AVMediaType {
+        self.underlyingAsset.mediaType
+    }
+    
     init(from track: AVAssetTrack) async {
         self.underlyingAsset = track
-        self.trackType = TrackType(from: track.mediaType)
         self.isEnabled = (try? await track.load(.isEnabled)) ?? false
         self.dimensions = (try? await track.load(.naturalSize))
     }
