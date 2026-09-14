@@ -10,7 +10,8 @@ import SwiftUI
 
 @Observable
 final class DataModel {
-    var selectedSidebarItem: SidebarItem = SidebarCategory.main.items.first ?? SidebarItem.localAnalyze
-    
+    var selectedSidebarItem: SidebarItem =
+        SidebarCategory.main.items.first ?? SidebarItem.localAnalyze
+
     init() {}
 }

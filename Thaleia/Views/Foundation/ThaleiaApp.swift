@@ -10,9 +10,9 @@ import SwiftUI
 
 @main
 struct ThaleiaApp: App {
-    
+
     @State private var dataModel: DataModel = DataModel()
-    
+
     var body: some Scene {
         WindowGroup {
             MainContentView()

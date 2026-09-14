@@ -53,7 +53,10 @@ struct MediaDetailView: View {
                                     media.fileURL
                                 ])
                             } label: {
-                                Label("Open in Finder", systemImage: "finder")
+                                Label(
+                                    "MediaDetailView.media.openInFinder",
+                                    systemImage: "finder"
+                                )
                             }
                         }
                     Label(
@@ -137,19 +140,11 @@ struct MediaDetailView: View {
                                     }
                                 }
 
-                                if track.type == .text {
-                                    Section {
-                                        Text("Text Info")
-                                    }
-                                }
-                                if track.type.icon == "questionmark" {
-                                    Section {
-                                        Text("Other Info")
-                                    }
-                                }
-                                
                             } label: {
-                                Label(track.type.title, systemImage: track.type.icon)
+                                Label(
+                                    track.type.title,
+                                    systemImage: track.type.icon
+                                )
                             }
 
                         }
@@ -185,7 +180,8 @@ struct MediaDetailView: View {
         if let media = self.media {
             self.tracks = []
             Task {
-                if let tracks = try? (await media.underlyingAsset.load(.tracks)) {
+                if let tracks = try? (await media.underlyingAsset.load(.tracks))
+                {
                     self.tracks = await Track.create(from: tracks)
                 }
             }

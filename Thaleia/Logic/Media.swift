@@ -1,9 +1,9 @@
-    //
-    //  Media.swift
-    //  Thaleia
-    //
-    //  Created by Gabriel Hassebrock on 7/15/26.
-    //
+//
+//  Media.swift
+//  Thaleia
+//
+//  Created by Gabriel Hassebrock on 7/15/26.
+//
 
 import AVFoundation
 import Foundation
@@ -20,14 +20,14 @@ struct Media: Equatable, Loggable, Identifiable {
     let fileContentType: String?
     let fileByteSize: Int?
     let filePermissions: [FilePermission]
-    
+
     let underlyingAsset: AVAsset
 
     init(at path: URL) {
         self.id = UUID()
         self.fileURL = path
         self.underlyingAsset = AVURLAsset(url: path)
-        
+
         var fileLocalizedName: String? = nil
         var fileContentType: String? = nil
         var fileByteSize: Int? = nil
@@ -44,16 +44,17 @@ struct Media: Equatable, Loggable, Identifiable {
         ]
 
         if let resourceValues = try? path.resourceValues(forKeys: resourceKeys),
-           let isDirectory = resourceValues.isDirectory
+            let isDirectory = resourceValues.isDirectory
         {
             if !isDirectory {
                 fileLocalizedName = resourceValues.localizedName
                 fileContentType =
-                resourceValues.contentType?.localizedDescription
-                ?? resourceValues.contentType?.identifier
+                    resourceValues.contentType?.localizedDescription
+                    ?? resourceValues.contentType?.identifier
                 fileByteSize = resourceValues.fileSize
                 filePermissions.removeAll()
-                filePermissions = FilePermission
+                filePermissions =
+                    FilePermission
                     .create(
                         readable: resourceValues.isReadable ?? false,
                         writable: resourceValues.isWritable ?? false,
@@ -61,12 +62,12 @@ struct Media: Equatable, Loggable, Identifiable {
                     )
             }
         }
-        
+
         self.fileLocalizedName = fileLocalizedName
         self.fileContentType = fileContentType
         self.fileByteSize = fileByteSize
         self.filePermissions = filePermissions
-        
+
         path.stopAccessingSecurityScopedResource()
     }
 }

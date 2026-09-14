@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct MainContentView: View {
-    
+
     @State private var selectedSidebarItem: SidebarItem =
-    SidebarCategory.main.items.first ?? SidebarItem.localAnalyze
+        SidebarCategory.main.items.first ?? SidebarItem.localAnalyze
     @State private var selectedMediaItem: Media? = nil
 
     var body: some View {
@@ -30,14 +30,14 @@ struct MainContentView: View {
             }
         } content: {
             switch selectedSidebarItem {
-                case .localAnalyze:
-                    LocalMediaContentView(
-                        selectedMediaItem: $selectedMediaItem
-                    )
-                case .seerrIssues:
-                    Text("Seerr Issues")
-                case .seeerrRequests:
-                    Text("Seerr Requests")
+            case .localAnalyze:
+                LocalMediaContentView(
+                    selectedMediaItem: $selectedMediaItem
+                )
+            case .seerrIssues:
+                Text("Seerr Issues Text")
+            case .seeerrRequests:
+                Text("Seerr Requests Text")
             }
         } detail: {
             MediaDetailView(media: $selectedMediaItem)

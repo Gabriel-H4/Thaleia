@@ -9,23 +9,23 @@ import AVFoundation
 import Foundation
 
 struct Track: Identifiable {
-    
+
     let id: UUID = UUID()
     let underlyingAsset: AVAssetTrack
     let isEnabled: Bool
     let dimensions: CGSize?
     //let bitrate: Int?
-    
+
     var type: AVMediaType {
         self.underlyingAsset.mediaType
     }
-    
+
     init(from track: AVAssetTrack) async {
         self.underlyingAsset = track
         self.isEnabled = (try? await track.load(.isEnabled)) ?? false
         self.dimensions = (try? await track.load(.naturalSize))
     }
-    
+
     static func create(from tracks: [AVAssetTrack]) async -> [Track] {
         var result: [Track] = []
         for track in tracks {
